@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.mod</groupId>
-    <artifactId>api-sys</artifactId>
+    <artifactId>provider-sys</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>provider-sys</name>
     <description>Demo project for Spring Boot</description>

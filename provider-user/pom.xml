@@ -11,7 +11,7 @@
     <groupId>com.mod</groupId>
     <artifactId>provider-user</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>api-user</name>
+    <name>provider-user</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -103,12 +103,15 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>com.alibaba.boot</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>
             <version>0.2.0</version>
         </dependency>
-
-
 
     </dependencies>
 

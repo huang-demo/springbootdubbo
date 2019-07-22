@@ -11,7 +11,7 @@
     <groupId>com.mod</groupId>
     <artifactId>provider-produce</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>api-produce</name>
+    <name>provider-produce</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

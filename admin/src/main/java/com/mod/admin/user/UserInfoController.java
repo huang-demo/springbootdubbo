@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.mod.common.core.Result;
 import com.mod.common.web.BaseController;
 import com.mod.user.entity.dto.UserInfoIdDTO;
+import com.mod.user.entity.dto.UserInfoPageDTO;
 import com.mod.user.service.IUserInfoService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,5 +26,9 @@ public class UserInfoController extends BaseController{
     @PostMapping("/getUserInfo")
     public Result getUserInfo(@RequestBody UserInfoIdDTO dto){
         return Result.success(userInfoService.getUserInfoById(dto));
+    }
+    @PostMapping("/queryPage")
+    public Result queryPage(@RequestBody UserInfoPageDTO dto){
+        return Result.success(userInfoService.queryPage(dto));
     }
 }

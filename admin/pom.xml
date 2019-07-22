@@ -72,7 +72,10 @@
             <version>${swagger.version}</version>
         </dependency>
         <!-- 加入springboot与dubbo集成的起步依赖 -->
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.alibaba.boot</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>

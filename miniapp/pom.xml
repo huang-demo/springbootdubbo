@@ -10,9 +10,9 @@
     </parent>
 
     <groupId>com.mod</groupId>
-    <artifactId>app</artifactId>
+    <artifactId>miniapp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>app</name>
+    <name>miniapp</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

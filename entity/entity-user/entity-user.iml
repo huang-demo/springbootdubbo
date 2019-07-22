@@ -6,12 +6,10 @@
     </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7">
-    <output url="file://$MODULE_DIR$/../entity-user/target/classes" />
-    <output-test url="file://$MODULE_DIR$/../entity-user/target/test-classes" />
-    <content url="file://$MODULE_DIR$/../entity-user">
-      <sourceFolder url="file://$MODULE_DIR$/../entity-user/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../entity-user/src/test/java" isTestSource="true" />
-      <excludeFolder url="file://$MODULE_DIR$/../entity-user/target" />
+    <output url="file://$MODULE_DIR$/target/classes" />
+    <output-test url="file://$MODULE_DIR$/target/test-classes" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />

@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.86.100:3306/sd_user?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: admin
+dubbo:
+  consumer:
+    check: false
+  application:
+    name: miniapp
+  protocol:
+    name: dubbo
+    port: 20891
+  registry:
+    address: zookeeper://192.168.86.100:2181
+#    file: ${user.home}/dubbo-cache/${spring.application.name}/dubbo.cache
+miniapp:
+  swagger-enable: true

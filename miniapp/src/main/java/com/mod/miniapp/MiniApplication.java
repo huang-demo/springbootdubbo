@@ -1,13 +1,13 @@
-package com.mod.app;
+package com.mod.miniapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MiniAPPApplication {
+public class MiniApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MiniAPPApplication.class, args);
+        SpringApplication.run(MiniApplication.class, args);
     }
 
 }

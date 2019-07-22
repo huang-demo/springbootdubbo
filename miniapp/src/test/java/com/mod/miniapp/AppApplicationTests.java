@@ -1,4 +1,4 @@
-package com.mod.app;
+package com.mod.miniapp;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

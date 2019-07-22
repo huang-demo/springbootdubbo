@@ -2,6 +2,7 @@ package com.mod.user.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.mod.common.entity.vo.TokenVO;
 import com.mod.user.entity.dto.UserInfoIdDTO;
 import com.mod.user.entity.dto.UserInfoPageDTO;
 import com.mod.user.entity.po.UserInfoPO;
@@ -30,4 +31,11 @@ public interface IUserInfoService extends IService<UserInfoPO> {
      * @return
      */
     Page<UserInfoVO> queryPage(UserInfoPageDTO param);
+
+    /**
+     * createToken
+     * @param userId
+     * @return
+     */
+    TokenVO createToken(Long userId);
 }

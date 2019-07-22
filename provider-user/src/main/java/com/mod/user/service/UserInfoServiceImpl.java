@@ -2,6 +2,10 @@ package com.mod.user.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.mod.common.constant.ExceptionCode;
+import com.mod.common.entity.vo.TokenVO;
+import com.mod.common.exception.GlobalException;
+import com.mod.common.utils.JwtUtils;
 import com.mod.user.dao.UserInfoDao;
 import com.mod.user.entity.dto.UserInfoIdDTO;
 import com.mod.user.entity.dto.UserInfoPageDTO;
@@ -34,5 +38,17 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao,UserInfoPO> imp
         Page<UserInfoVO> page = new Page<>(param.getPageIndex(),param.getPageSize());
         page.setRecords(userInfoDao.queryPage(page,param));
         return page;
+    }
+
+    @Override
+    public TokenVO createToken(Long userId) {
+        UserInfoPO userInfoPO = this.getById(userId);
+        if(userInfoPO == null){
+            throw new GlobalException(ExceptionCode.USER_NOT_EXIST);
+        }
+        String sign = JwtUtils.sign(userInfoPO.getOpenId(), userInfoPO.getUserName(), userInfoPO.getPassword());
+        TokenVO token = new TokenVO();
+        token.setToken(sign);
+        return token;
     }
 }

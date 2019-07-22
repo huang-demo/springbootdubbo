@@ -12,12 +12,18 @@
     <artifactId>service</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>sys</module>
-        <module>user</module>
-        <module>order</module>
-        <module>produce</module>
-        <module>finance</module>
+        <module>service-sys</module>
+        <module>service-user</module>
+        <module>service-order</module>
+        <module>service-produce</module>
+        <module>service-finance</module>
     </modules>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

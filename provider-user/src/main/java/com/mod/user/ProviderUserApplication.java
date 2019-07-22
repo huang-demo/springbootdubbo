@@ -1,16 +1,15 @@
-package com.mod.admin;
+package com.mod.user;
 
 import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
 @EnableDubbo
-public class AdminApplication {
+public class ProviderUserApplication{
 
     public static void main(String[] args) {
-        SpringApplication.run(AdminApplication.class, args);
+        SpringApplication.run(ProviderUserApplication.class, args);
     }
 
 }

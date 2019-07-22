@@ -1,0 +1,20 @@
+spring:
+  profiles:
+    active: dev
+  application: admin
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sd_user?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: admin
+dubbo:
+  consumer:
+    check: false
+  application:
+    name: admin
+  protocol:
+    name: dubbo
+    port: 20890
+  registry:
+    address: zookeeper://192.168.131.102:2181
+#    file: ${user.home}/dubbo-cache/${spring.application.name}/dubbo.cache

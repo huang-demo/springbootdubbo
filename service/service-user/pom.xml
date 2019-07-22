@@ -3,31 +3,19 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>springboot-dubbo</artifactId>
+        <artifactId>service</artifactId>
         <groupId>com.mod</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>entity</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>entity-sys</module>
-        <module>entity-user</module>
-    </modules>
+    <artifactId>service-user</artifactId>
     <dependencies>
         <dependency>
             <groupId>com.mod</groupId>
-            <artifactId>common</artifactId>
+            <artifactId>entity-user</artifactId>
             <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

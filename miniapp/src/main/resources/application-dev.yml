@@ -2,7 +2,7 @@
 spring:
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost/sd_user?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    url: jdbc:mysql://192.168.86.100/sd_user?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
     username: root
     password: admin
 dubbo:
@@ -15,7 +15,7 @@ dubbo:
     name: dubbo
     port: 20891
   registry:
-    address: zookeeper://192.168.131.102:2181
+    address: zookeeper://192.168.86.100:2181
 #    file: ${user.home}/dubbo-cache/${spring.application.name}/dubbo.cache
 miniapp:
   swagger-enable: true

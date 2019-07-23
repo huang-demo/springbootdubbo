@@ -1,4 +1,4 @@
-package com.mod.miniapp.filter;
+package com.mod.admin.filter;
 
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
@@ -13,23 +13,23 @@ import java.util.UUID;
  * @Date create in 2019/7/23 16:20
  */
 @Slf4j
-public class LogbackFilter implements Filter{
+public class LogbackFilter implements Filter {
 
     private static final String UNIQUE_ID = "traceId";
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException{
+    public void init(FilterConfig filterConfig) throws ServletException {
 
     }
 
     @Override
-    public void doFilter(ServletRequest request,ServletResponse response,
+    public void doFilter(ServletRequest request, ServletResponse response,
                          FilterChain chain) throws IOException, ServletException {
         boolean bInsertMDC = insertMDC();
         try {
             chain.doFilter(request, response);
         } finally {
-            if(bInsertMDC) {
+            if (bInsertMDC) {
                 MDC.remove(UNIQUE_ID);
             }
         }

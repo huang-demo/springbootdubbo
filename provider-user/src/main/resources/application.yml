@@ -8,3 +8,7 @@ spring:
     time-zone: GMT+8
 logging:
   config: classpath:logback-spring.xml
+
+shrio:
+  login:
+    secret: ^Hw$xj7

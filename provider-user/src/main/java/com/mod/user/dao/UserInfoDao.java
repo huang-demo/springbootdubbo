@@ -2,10 +2,10 @@ package com.mod.user.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.mod.user.entity.dto.SysUserDTO;
 import com.mod.user.entity.dto.UserInfoPageDTO;
 import com.mod.user.entity.po.UserInfoPO;
 import com.mod.user.entity.vo.UserInfoVO;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -35,4 +35,11 @@ public interface UserInfoDao extends BaseMapper<UserInfoPO> {
      * @return
      */
     List<UserInfoVO> queryPage(Page<UserInfoVO> page,UserInfoPageDTO param);
+
+    /**
+     *findByUserName
+     * @param userName
+     * @return
+     */
+    SysUserDTO findByUserName(@Param("userName") String userName);
 }

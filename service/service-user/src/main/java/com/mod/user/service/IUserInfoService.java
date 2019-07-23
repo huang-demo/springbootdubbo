@@ -3,6 +3,8 @@ package com.mod.user.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.mod.common.entity.vo.TokenVO;
+import com.mod.user.entity.dto.LoginUserDTO;
+import com.mod.user.entity.dto.SysUserDTO;
 import com.mod.user.entity.dto.UserInfoIdDTO;
 import com.mod.user.entity.dto.UserInfoPageDTO;
 import com.mod.user.entity.po.UserInfoPO;
@@ -38,4 +40,18 @@ public interface IUserInfoService extends IService<UserInfoPO> {
      * @return
      */
     TokenVO createToken(Long userId);
+
+    /**
+     *findByUserName
+     * @param userName
+     * @return
+     */
+    SysUserDTO findByUserName(String userName);
+
+    /**
+     * login
+     * @param dto
+     * @return
+     */
+    SysUserDTO login(LoginUserDTO dto);
 }

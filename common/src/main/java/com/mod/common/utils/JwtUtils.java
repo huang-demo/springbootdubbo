@@ -26,11 +26,11 @@ public class JwtUtils{
      * @param secret 用户的密码
      * @return 是否正确
      */
-    public static boolean verify(String token, String openid, String secret) {
+    public static boolean verify(String token, String userName, String secret) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             JWTVerifier verifier = JWT.require(algorithm)
-                    .withClaim("openid", openid)
+                    .withClaim("userName", userName)
                     .build();
             // 解析jwt
             DecodedJWT jwt = verifier.verify(token);
@@ -39,6 +39,7 @@ public class JwtUtils{
             return false;
         }
     }
+
 
     /**
      * 2. 获得token中的信息无需secret解密也能获得
@@ -53,9 +54,16 @@ public class JwtUtils{
             return null;
         }
     }
-
+    public static String getUserName(String token) {
+        try {
+            DecodedJWT jwt = JWT.decode(token);
+            return jwt.getClaim("userName").asString();
+        } catch (JWTDecodeException e) {
+            return null;
+        }
+    }
     /**
-     * 3. 生成签名,5min后过期
+     * 3. 生成签名,30min后过期
      *
      * @param openid 用户名
      * @param secret   用户的密码
@@ -70,13 +78,36 @@ public class JwtUtils{
         // 附带openid信息
         return JWT.create()
                 .withHeader(map)
-                .withClaim("openid", openid)
                 .withClaim("secret", secret)
+                .withClaim("openid", openid)
                 .withClaim("userName", userName)
                 .withIssuer("SERVICE")
                 .withSubject("this is test token")
                 .withNotBefore(new Date())
                 .withAudience("APP")//签名的观众 也可以理解谁接受签名的
+                .withExpiresAt(date)
+                .sign(algorithm);
+    }
+
+    /**
+     * 生成签名
+     * @param userName
+     * @param secret
+     * @return
+     */
+    public static String sign(Long userId,String userName, String secret) {
+        Date date = new Date(System.currentTimeMillis() + EXPIRE_TIME);
+        Algorithm algorithm = Algorithm.HMAC256(secret);
+        Map<String, Object> map = new HashMap<String, Object>(3);
+        map.put("alg", "HS256");
+        map.put("typ", "JWT");
+        // 附带openid信息
+        return JWT.create()
+                .withHeader(map)
+                .withClaim("secret", secret)
+                .withClaim("userId", userId)
+                .withClaim("userName", userName)
+                .withNotBefore(new Date())
                 .withExpiresAt(date)
                 .sign(algorithm);
     }

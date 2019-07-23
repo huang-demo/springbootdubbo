@@ -1,4 +1,4 @@
-package com.mod.miniapp.filter;
+package com.mod.admin.filter;
 
 
 import com.alibaba.dubbo.common.Constants;

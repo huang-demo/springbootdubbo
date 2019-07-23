@@ -11,4 +11,9 @@
         select user_name AS userName,avator
         from user_info
     </select>
+    <select id="findByUserName" resultType="com.mod.user.entity.dto.SysUserDTO">
+        select user_id userId, user_name AS userName,password
+        from user_info
+        where user_name=#{userName}
+    </select>
 </mapper>

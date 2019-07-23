@@ -23,6 +23,8 @@ public class UserInfoController extends BaseController{
     @Reference
     private IUserInfoService userInfoService;
 
+
+
     @PostMapping("/getUserInfo")
     public Result getUserInfo(@RequestBody UserInfoIdDTO dto){
         return Result.success(userInfoService.getUserInfoById(dto));

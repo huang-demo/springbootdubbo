@@ -1,4 +1,4 @@
-package com.mod.apiorder;
+package com.mod.produce;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ApiOrderApplicationTests {
+public class ApiProduceApplicationTests {
 
     @Test
     public void contextLoads() {

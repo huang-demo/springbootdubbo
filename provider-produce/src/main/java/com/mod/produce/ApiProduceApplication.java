@@ -1,13 +1,13 @@
-package com.mod.apiorder;
+package com.mod.produce;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ApiOrderApplication {
+public class ApiProduceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ApiOrderApplication.class, args);
+        SpringApplication.run(ApiProduceApplication.class, args);
     }
 
 }

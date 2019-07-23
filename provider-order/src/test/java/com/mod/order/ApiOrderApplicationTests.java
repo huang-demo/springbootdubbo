@@ -1,4 +1,4 @@
-package com.mod.apifinance;
+package com.mod.order;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ApiFinanceApplicationTests {
+public class ApiOrderApplicationTests {
 
     @Test
     public void contextLoads() {

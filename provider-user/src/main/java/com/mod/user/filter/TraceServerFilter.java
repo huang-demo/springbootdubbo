@@ -24,11 +24,11 @@ public class TraceServerFilter  implements Filter{
             MDC.put("traceId", traceId);
         }
         Long startTime = System.currentTimeMillis();
-        Long takeTime = System.currentTimeMillis() - startTime;
         String className = invoker.getInterface().getName();
         String req = GsonUtils.obj2Json(invocation.getArguments());
         log.info("{}- method:{}.{}(),   request:{}", traceId,className , invocation.getMethodName(),req);
         Result result = invoker.invoke(invocation);
+        Long takeTime = System.currentTimeMillis() - startTime;
         log.info("{}- method:{}.{}(),   response:{},   time:{} ms",traceId,className , invocation.getMethodName(),GsonUtils.obj2Json(result), String.valueOf(takeTime));
         return result;
     }

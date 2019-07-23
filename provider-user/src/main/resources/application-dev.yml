@@ -51,6 +51,7 @@ dubbo:
     name: provider-user
   provider:
     timeout: 5000
+    filter: traceServerFilter
   scan:
     base-packages: com.mod.user.service
   protocol:

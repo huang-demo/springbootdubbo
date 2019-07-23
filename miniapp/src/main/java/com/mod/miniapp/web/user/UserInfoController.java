@@ -33,7 +33,7 @@ public class UserInfoController extends BaseController {
 
     @PostMapping("/queryPage")
     @ApiOperation(value = "列表查询", response = UserInfoVO.class)
-    @UserLoginToken
+//    @UserLoginToken
     public Result queryPage(@RequestBody UserInfoPageDTO dto){
         Page<UserInfoVO> page = userInfoService.queryPage(dto);
         return success(page);

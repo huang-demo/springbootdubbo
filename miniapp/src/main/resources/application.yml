@@ -4,3 +4,5 @@ spring:
     active: dev
 logging:
   config: classpath:logback-spring.xml
+server:
+  port: 9080

@@ -1,1 +1,61 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sd_sys?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: admin
+    poolPingConnectionsNotUsedFor: 60000
+    removeAbandoned: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000;druid.stat.logSlowSql=true
+    minIdle: 1
+    validationQuery: SELECT 1 FROM DUAL
+    initialSize: 5
+    maxWait: 60000
+    poolPreparedStatements: false
+    filters: stat,wall,logback
+    testOnBorrow: false
+    testWhileIdle: true
+    minEvictableIdleTimeMillis: 300000
+    timeBetweenEvictionRunsMillis: 60000
+    testOnReturn: false
+    maxActive: 50
+    druid:
+      user: admin
+      password: admin
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: dev
+    publisher-confirms: true
+    publisher-returns: true
+    listener:
+      direct:
+        acknowledge-mode: manual
+  redis:
+    host: localhost
+    port: 6379
 
+logging:
+  level:
+    root: info
+nacos:
+  server-address: 127.0.0.1
+  port: 8848
+embedded:
+  zookeeper:
+    port: 2181
+dubbo:
+  application:
+    name: provider-user
+  provider:
+    timeout: 5000
+  scan:
+    base-packages: com.mod.user.service
+  protocol:
+    name: dubbo
+    port: 20881
+  registry:
+    address: zookeeper://192.168.131.102:2181
+#    file: ${user.home}/dubbo-cache/${spring.application.name}/dubbo.cache

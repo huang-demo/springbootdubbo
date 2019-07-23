@@ -28,9 +28,18 @@
         <swagger.version>2.7.0</swagger.version>
         <freemarker.version>2.3.28</freemarker.version>
         <mybatis-plus.version>3.1.2</mybatis-plus.version>
-        <dubbo.version>2.6.5</dubbo.version>
+        <dubbo-spring.version>0.2.0</dubbo-spring.version>
         <curator.version>4.1.0</curator.version>
-        <dubbo.registry.nacos>0.0.2</dubbo.registry.nacos>
+        <lombok.version>1.18.8</lombok.version>
+        <gson.version>2.8.5</gson.version>
+        <jwt.version>3.8.0</jwt.version>
+        <guava.version>27.0.1-jre</guava.version>
+        <druid.version>1.1.12</druid.version>
+        <jedis.version>2.9.0</jedis.version>
+        <netty.version>4.1.32.Final</netty.version>
+        <zkClient.version>0.10</zkClient.version>
+        <validation.version>2.0.1.Final</validation.version>
+        <mybatis-spring.version>2.1.0</mybatis-spring.version>
     </properties>
 
     <dependencyManagement>
@@ -38,27 +47,24 @@
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.18.8</version>
+                <version>${lombok.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.google.code.gson</groupId>
                 <artifactId>gson</artifactId>
-                <version>2.8.5</version>
+                <version>${gson.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.auth0</groupId>
                 <artifactId>java-jwt</artifactId>
-                <version>3.8.0</version>
+                <version>${jwt.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-logging</artifactId>
-            </dependency>
+
             <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>27.0.1-jre</version>
+                <version>${guava.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.baomidou</groupId>
@@ -86,45 +92,45 @@
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${swagger.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis-spring.version}</version>
+            </dependency>
             <!-- alibaba的druid数据库连接池 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
-                <version>1.1.12</version>
+                <version>${druid.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
-                <version>2.9.0</version>
+                <version>${jedis.version}</version>
             </dependency>
 
             <!-- zookeeper的客户端jar依赖包 -->
             <dependency>
                 <groupId>com.101tec</groupId>
                 <artifactId>zkclient</artifactId>
-                <version>0.10</version>
+                <version>${zkClient.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.netty</groupId>
                 <artifactId>netty-all</artifactId>
-                <version>4.1.32.Final</version>
+                <version>${netty.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba.boot</groupId>
                 <artifactId>dubbo-spring-boot-starter</artifactId>
-                <version>0.2.0</version>
+                <version>${dubbo-spring.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.apache.curator</groupId>
-                <artifactId>curator-recipes</artifactId>
-                <version>${curator.version}</version>
-            </dependency>
+
             <dependency>
                 <groupId>javax.validation</groupId>
                 <artifactId>validation-api</artifactId>
-                <version>2.0.1.Final</version>
+                <version>${validation.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

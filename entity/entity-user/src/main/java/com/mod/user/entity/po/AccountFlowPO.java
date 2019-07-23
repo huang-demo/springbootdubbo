@@ -11,7 +11,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author Mr.p
@@ -53,30 +53,7 @@ public class AccountFlowPO extends BasePO {
      */
     private Long afterValue;
 
-    /**
-     * 创建人
-     */
-    private Long createUser;
 
-    /**
-     * 创建时间
-     */
-    private LocalDateTime createTime;
-
-    /**
-     * 更新人
-     */
-    private Long updateUser;
-
-    /**
-     * 更新时间
-     */
-    private LocalDateTime updateTime;
-
-    /**
-     * 版本
-     */
-    private Integer version;
 
 
 }

@@ -35,6 +35,15 @@ public class UserInfoPO extends BasePO{
 
     private String avator;
 
+    private String appid;
+
+    private String phone;
+
+    private Integer userState;
+
+    private Integer userType;
+
+
 
 
 

@@ -35,14 +35,12 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
 
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws UnauthorizedException {
-        HttpServletRequest req = (HttpServletRequest) request;
-        //如果存在，则进入 executeLogin 方法执行登入，检查 token 是否正确
         try {
             executeLogin(request, response);
             return true;
         } catch (Exception e) {
             //token 错误
-            throw new GlobalException("token 错误");
+            throw new GlobalException("token 时效");
         }
     }
 

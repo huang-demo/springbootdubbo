@@ -40,7 +40,7 @@ public class MyRealm extends AuthorizingRealm {
         if (username == null) {
             throw new AuthenticationException("token无效");
         }
-        SysUserDTO user = userInfoService.findByUserName(username);
+//        SysUserDTO user = userInfoService.findByUserName(username);
 
         if (!JwtUtils.verify(token, username, SysConstant.LOGIN_SECRET)) {
             throw new AuthenticationException("用户名或密码错误");

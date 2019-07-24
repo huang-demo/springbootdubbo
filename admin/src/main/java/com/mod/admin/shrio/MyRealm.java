@@ -45,11 +45,11 @@ public class MyRealm extends AuthorizingRealm {
         if (!JwtUtils.verify(token, username, SysConstant.LOGIN_SECRET)) {
             throw new AuthenticationException("用户名或密码错误");
         }
-        return new SimpleAuthenticationInfo(token, user.getPassword(), getName());
+        return new SimpleAuthenticationInfo(token, token, getName());
     }
     @Override
     public boolean supports(AuthenticationToken token) {
         // TODO Auto-generated method stub
-        return token instanceof UsernamePasswordToken;
+        return token instanceof JwtToken;
     }
 }

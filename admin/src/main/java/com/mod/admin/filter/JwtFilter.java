@@ -36,10 +36,6 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws UnauthorizedException {
         HttpServletRequest req = (HttpServletRequest) request;
-        String uri = req.getRequestURI();
-        if (uri.endsWith("login")) {
-            return true;
-        }
         //如果存在，则进入 executeLogin 方法执行登入，检查 token 是否正确
         try {
             executeLogin(request, response);

@@ -32,13 +32,13 @@ public class LoginContoller extends BaseController {
         JwtToken jwtToken = new JwtToken(token);
         response.setHeader(SysConstant.TOKEN, token);
         SecurityUtils.getSubject().login(jwtToken);
-        return success();
+        return success(token);
     }
 
     @GetMapping("/logout")
     public Result logout(HttpServletRequest req, HttpServletResponse res) {
         String jwtToken = req.getHeader(SysConstant.TOKEN);
-
+        SecurityUtils.getSubject().logout();
 //        userInfoService.logout(jwtToken);
         res.setHeader(SysConstant.TOKEN, null);
         return success();

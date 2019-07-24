@@ -2,4 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mod.sys.dao.MenuDao">
 
+    <select id="queryMenu" resultType="com.mod.sys.entity.vo.MenuVO">
+        SELECT menu.`menu_id` menuId,menu.`menu_name` menuName,menu.`parent_id` pid,menu.`menu_state` menuState,menu.`url` url,
+        menu.`menu_type` menuType
+        FROM `sys_menu` menu
+        <where>
+            <if test="menuId!=null">AND menu.menu_id=#{menuId}</if>
+            <if test="pid!=null">AND menu.parent_id=#{pid}</if>
+            <if test="level!=null">AND menu.level=#{level}</if>
+        </where>
+        ORDER BY menu.sort DESC
+    </select>
 </mapper>

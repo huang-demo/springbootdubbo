@@ -1,7 +1,7 @@
 spring:
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/sd_sys?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    url: jdbc:mysql://192.168.131.102:3306/sd_sys?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
     username: root
     password: admin
     poolPingConnectionsNotUsedFor: 60000
@@ -23,7 +23,7 @@ spring:
       user: admin
       password: admin
   rabbitmq:
-    host: localhost
+    host: 192.168.131.102
     port: 5672
     username: guest
     password: guest
@@ -34,7 +34,7 @@ spring:
       direct:
         acknowledge-mode: manual
   redis:
-    host: localhost
+    host: 192.168.131.102
     port: 6379
 
 logging:
@@ -48,14 +48,14 @@ embedded:
     port: 2181
 dubbo:
   application:
-    name: provider-user
+    name: provider-sys
   provider:
     timeout: 5000
   scan:
-    base-packages: com.mod.user.service
+    base-packages: com.mod.sys.service
   protocol:
     name: dubbo
-    port: 20881
+    port: 20890
   registry:
     address: zookeeper://192.168.131.102:2181
 #    file: ${user.home}/dubbo-cache/${spring.application.name}/dubbo.cache

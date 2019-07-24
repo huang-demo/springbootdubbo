@@ -10,6 +10,6 @@ import org.springframework.context.annotation.Configuration;
  * @Date create in 2019/7/22 10:31
  */
 @Configuration
-@EnableDubbo
+
 public class DubboConfig{
 }

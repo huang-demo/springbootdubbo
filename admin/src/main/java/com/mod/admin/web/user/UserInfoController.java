@@ -1,4 +1,4 @@
-package com.mod.admin.user;
+package com.mod.admin.web.user;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.mod.common.core.Result;

@@ -1,7 +1,11 @@
 package com.mod.sys.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.mod.sys.entity.dto.MenuQueryDTO;
 import com.mod.sys.entity.po.MenuPO;
+import com.mod.sys.entity.vo.MenuVO;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +17,10 @@ import com.mod.sys.entity.po.MenuPO;
  */
 public interface MenuDao extends BaseMapper<MenuPO> {
 
+    /**
+     * queryMenu
+     * @param queryDTO
+     * @return
+     */
+    List<MenuVO> queryMenu(MenuQueryDTO queryDTO);
 }

@@ -36,7 +36,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/v2/**", "anon");
         // 添加自己的过滤器并且取名为jwt
         Map<String, Filter> filterMap = new HashMap<String, Filter>(1);
-        filterMap.put("jwt", new JwtFilter());
+        filterMap.put("jwt", getJwtFilter());
         shiroFilterFactoryBean.setFilters(filterMap);
         //<!-- 过滤链定义，从上向下顺序执行，一般将/**放在最为下边
         filterChainDefinitionMap.put("/**", "jwt");
@@ -48,6 +48,10 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 
         return shiroFilterFactoryBean;
+    }
+    @Bean
+    public JwtFilter getJwtFilter(){
+        return new JwtFilter();
     }
 
     @Bean

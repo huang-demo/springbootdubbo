@@ -39,6 +39,8 @@ public class UserInfoPO extends BasePO{
 
     private String phone;
 
+    private String email;
+
     private Integer userState;
 
     private Integer userType;

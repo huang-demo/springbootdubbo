@@ -1,4 +1,4 @@
-package com.mod.admin.sys;
+package com.mod.admin.web.sys;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +15,7 @@ import com.mod.common.web.BaseController;
  * @since 2019-07-23
  */
 @RestController
-@RequestMapping("/sys/role-user")
-public class RoleUserController extends BaseController {
+@RequestMapping("/sys/role")
+public class RoleController extends BaseController {
 
 }

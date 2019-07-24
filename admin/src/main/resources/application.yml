@@ -3,3 +3,7 @@ spring:
     active: dev
 logging:
   config: classpath:logback-spring.xml
+server:
+  port: 8080
+admin:
+  isDev: true

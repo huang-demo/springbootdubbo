@@ -31,7 +31,7 @@ public class Swagger2Config {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo()).globalOperationParameters(pars)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.mod.admin"))
+                .apis(RequestHandlerSelectors.basePackage("com.mod.admin.web"))
                 .paths(PathSelectors.any())
                 .build();
     }

@@ -1,4 +1,4 @@
-package com.mod.admin.user;
+package com.mod.admin.web.sys;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +15,7 @@ import com.mod.common.web.BaseController;
  * @since 2019-07-23
  */
 @RestController
-@RequestMapping("/user/account-flow-po")
-public class AccountFlowController extends BaseController {
+@RequestMapping("/sys/role-menu")
+public class RoleMenuController extends BaseController {
 
 }

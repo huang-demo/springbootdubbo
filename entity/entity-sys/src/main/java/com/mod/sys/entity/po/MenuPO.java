@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.experimental.Accessors;
 
 /**
@@ -68,5 +69,23 @@ public class MenuPO extends BasePO{
      */
     private String icon;
 
+    private Integer sort;
+
+    @Getter
+    public enum MenuType{
+
+        //
+        DIR(0,"目录"),
+        MENU(1,"菜单"),
+        BUTTON(2,"按钮"),
+        ;
+        private Integer code;
+        private String name;
+
+        MenuType(Integer code,String name){
+            this.code = code;
+            this.name = name;
+        }
+    }
 
 }

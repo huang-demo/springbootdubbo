@@ -1,6 +1,6 @@
 /*
 SQLyog  v12.2.6 (64 bit)
-MySQL - 5.7.22-log : Database - sd_sys
+MySQL - 5.7.18 : Database - sd_sys
 *********************************************************************
 */
 
@@ -29,9 +29,9 @@ CREATE TABLE `sys_dict` (
   `dict_state` tinyint(2) NOT NULL DEFAULT '0' COMMENT '状态',
   `parent_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '父级',
   `create_user` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建人',
-  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_user` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新人',
-  `update_time` datetime NOT NULL COMMENT '更新时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   `version` int(5) NOT NULL DEFAULT '0' COMMENT '版本',
   PRIMARY KEY (`dict_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -51,15 +51,28 @@ CREATE TABLE `sys_menu` (
   `menu_state` int(5) NOT NULL DEFAULT '0' COMMENT '菜单状态',
   `url` varchar(200) NOT NULL DEFAULT '' COMMENT '跳转连接',
   `icon` varchar(50) NOT NULL DEFAULT '' COMMENT '图标',
+  `sort` int(5) NOT NULL DEFAULT '0' COMMENT '排序',
   `create_user` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建人',
-  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_user` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新人',
-  `update_time` datetime NOT NULL COMMENT '更新时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   `version` int(5) NOT NULL DEFAULT '0' COMMENT '版本',
   PRIMARY KEY (`menu_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 /*Data for the table `sys_menu` */
+
+insert  into `sys_menu`(`menu_id`,`menu_name`,`level`,`parent_id`,`menu_type`,`menu_state`,`url`,`icon`,`sort`,`create_user`,`create_time`,`update_user`,`update_time`,`version`) values 
+(1,'系统管理',0,0,0,1,'','xxx',0,0,'2019-07-24 09:22:11',0,'2019-07-24 09:22:11',0),
+(2,'订单管理',0,0,0,1,'','',0,0,'2019-07-24 09:23:05',0,'2019-07-24 09:23:05',0),
+(3,'商品管理',0,0,0,1,'','',0,0,'2019-07-24 09:23:45',0,'2019-07-24 09:23:45',0),
+(4,'库存管理',0,0,0,1,'','',0,0,'2019-07-24 09:23:52',0,'2019-07-24 09:23:52',0),
+(5,'会员管理',0,0,0,1,'xxx','',0,0,'2019-07-24 09:26:05',0,'2019-07-24 09:26:05',0),
+(6,'订单列表',0,2,1,1,'xxx','',0,0,'2019-07-24 09:26:43',0,'2019-07-24 09:26:43',0),
+(7,'商品列表',0,3,1,1,'xxx','',0,0,'2019-07-24 09:27:31',0,'2019-07-24 09:27:31',0),
+(8,'库存列表',0,4,1,1,'xxx','',0,0,'2019-07-24 09:27:48',0,'2019-07-24 09:27:48',0),
+(9,'菜单管理',0,1,1,1,'xxx','',0,0,'2019-07-24 09:32:59',0,'2019-07-24 09:32:59',0),
+(10,'角色管理',0,1,1,1,'xxx','',0,0,'2019-07-24 09:33:06',0,'2019-07-24 09:33:06',0);
 
 /*Table structure for table `sys_role` */
 
@@ -70,15 +83,21 @@ CREATE TABLE `sys_role` (
   `role_name` varchar(50) NOT NULL DEFAULT '' COMMENT '角色名称',
   `role_state` int(5) NOT NULL DEFAULT '0' COMMENT '角色状态',
   `parent_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '父级',
+  `remark` varchar(500) NOT NULL DEFAULT '' COMMENT '备注',
   `create_user` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建人',
-  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_user` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新人',
-  `update_time` datetime NOT NULL COMMENT '更新时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   `version` int(5) NOT NULL DEFAULT '0' COMMENT '版本',
   PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `sys_role` */
+
+insert  into `sys_role`(`role_id`,`role_name`,`role_state`,`parent_id`,`remark`,`create_user`,`create_time`,`update_user`,`update_time`,`version`) values 
+(1,'超级管理员',1,0,'最高权限',0,'2019-07-24 10:13:45',0,'2019-07-24 10:13:45',0),
+(2,'财务',1,0,'财务模块',0,'2019-07-24 10:14:23',0,'2019-07-24 10:14:23',0),
+(3,'跟单',1,0,'订单管理,商品管理',0,'2019-07-24 10:14:35',0,'2019-07-24 10:14:35',0);
 
 /*Table structure for table `sys_role_menu` */
 
@@ -90,9 +109,9 @@ CREATE TABLE `sys_role_menu` (
   `role_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '角色id',
   `is_deleted` tinyint(2) NOT NULL DEFAULT '0' COMMENT '是否删除',
   `create_user` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建人',
-  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_user` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新人',
-  `update_time` datetime NOT NULL COMMENT '更新时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   `version` int(5) NOT NULL DEFAULT '0' COMMENT '版本',
   PRIMARY KEY (`role_menu_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -109,9 +128,9 @@ CREATE TABLE `sys_role_user` (
   `user_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户',
   `is_deleted` tinyint(2) NOT NULL DEFAULT '0' COMMENT '是否删除',
   `create_user` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建人',
-  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_user` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新人',
-  `update_time` datetime NOT NULL COMMENT '更新时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   `version` int(5) NOT NULL DEFAULT '0' COMMENT '版本',
   PRIMARY KEY (`role_user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

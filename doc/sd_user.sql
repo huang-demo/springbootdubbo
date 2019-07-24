@@ -1,6 +1,6 @@
 /*
 SQLyog  v12.2.6 (64 bit)
-MySQL - 5.7.22-log : Database - sd_user
+MySQL - 5.7.18 : Database - sd_user
 *********************************************************************
 */
 
@@ -16,25 +16,6 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`sd_user` /*!40100 DEFAULT CHARACTER SET
 
 USE `sd_user`;
 
-/*Table structure for table `sys_user_role` */
-
-DROP TABLE IF EXISTS `sys_user_role`;
-
-CREATE TABLE `sys_user_role` (
-  `user_role_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `role_id` bigint(20) NOT NULL COMMENT '角色',
-  `user_id` bigint(20) NOT NULL COMMENT '用户',
-  `is_deleted` tinyint(2) NOT NULL COMMENT '是否删除',
-  `create_user` bigint(20) NOT NULL COMMENT '创建人',
-  `create_time` datetime NOT NULL COMMENT '创建时间',
-  `update_user` bigint(20) NOT NULL COMMENT '更新人',
-  `update_time` datetime NOT NULL COMMENT '更新时间',
-  `version` int(5) NOT NULL COMMENT '版本',
-  PRIMARY KEY (`user_role_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `sys_user_role` */
-
 /*Table structure for table `user_account` */
 
 DROP TABLE IF EXISTS `user_account`;
@@ -46,9 +27,9 @@ CREATE TABLE `user_account` (
   `points` bigint(20) NOT NULL DEFAULT '0' COMMENT '积分',
   `salt` varchar(20) NOT NULL DEFAULT '' COMMENT '加密盐',
   `create_user` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建人',
-  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_user` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新人',
-  `update_time` datetime NOT NULL COMMENT '更新时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   `version` int(5) NOT NULL DEFAULT '0' COMMENT '版本',
   PRIMARY KEY (`account_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -67,10 +48,10 @@ CREATE TABLE `user_account_flow` (
   `change_value` bigint(20) NOT NULL DEFAULT '0' COMMENT '变更值',
   `after_value` bigint(20) NOT NULL DEFAULT '0' COMMENT '变更后',
   `create_user` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建人',
-  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_user` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新人',
-  `update_time` datetime NOT NULL COMMENT '更新时间',
-  `version` int(5) NOT NULL COMMENT '版本',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `version` int(5) NOT NULL DEFAULT '0' COMMENT '版本',
   PRIMARY KEY (`account_flow_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -88,6 +69,7 @@ CREATE TABLE `user_info` (
   `avator` varchar(200) NOT NULL COMMENT '微信头像',
   `appid` varchar(50) NOT NULL DEFAULT '' COMMENT '公众号',
   `phone` varchar(20) NOT NULL DEFAULT '' COMMENT '电话号码',
+  `email` varchar(50) NOT NULL DEFAULT '' COMMENT '邮箱',
   `user_state` int(5) NOT NULL DEFAULT '0' COMMENT '状态 0默认1有效账户2 锁定',
   `user_type` int(5) NOT NULL DEFAULT '0' COMMENT '用户类型,0默认 1系统账户,2微信用户',
   `create_user` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建人',
@@ -100,8 +82,8 @@ CREATE TABLE `user_info` (
 
 /*Data for the table `user_info` */
 
-insert  into `user_info`(`user_id`,`user_name`,`password`,`open_id`,`avator`,`appid`,`phone`,`user_state`,`user_type`,`create_user`,`create_time`,`update_user`,`update_time`,`version`) values 
-(1,'zhangsan','111','xxx','xxx','','',0,0,0,'2019-07-22 15:31:06',0,'2019-07-22 15:31:09',0);
+insert  into `user_info`(`user_id`,`user_name`,`password`,`open_id`,`avator`,`appid`,`phone`,`email`,`user_state`,`user_type`,`create_user`,`create_time`,`update_user`,`update_time`,`version`) values 
+(1,'admin','21232F297A57A5A743894A0E4A801FC3','xxx','xxx','','','',0,0,0,'2019-07-22 15:31:06',0,'2019-07-22 15:31:09',0);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

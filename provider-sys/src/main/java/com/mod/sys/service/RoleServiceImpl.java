@@ -1,9 +1,15 @@
 package com.mod.sys.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mod.sys.dao.RoleDao;
+import com.mod.sys.entity.dto.RolePageDTO;
 import com.mod.sys.entity.po.RolePO;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.mod.sys.entity.vo.RoleVO;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 /**
  * <p>
@@ -16,4 +22,13 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 @Service
 public class RoleServiceImpl extends ServiceImpl<RoleDao,RolePO> implements IRoleService {
 
+    @Autowired
+    private RoleDao roleDao;
+    @Override
+    public Page<RoleVO> queryPage(RolePageDTO dto){
+        Page<RoleVO> page = new Page<>(dto.getPageIndex(),dto.getPageSize());
+        List<RoleVO> list = roleDao.queryPage(page,dto);
+        page.setRecords(list);
+        return page;
+    }
 }

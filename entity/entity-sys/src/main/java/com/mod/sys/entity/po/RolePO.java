@@ -48,5 +48,7 @@ public class RolePO extends BasePO{
      */
     private Long parentId;
 
+    private String remark;
+
 
 }

@@ -1,7 +1,10 @@
 package com.mod.sys.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.mod.sys.entity.dto.RolePageDTO;
 import com.mod.sys.entity.po.RolePO;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.mod.sys.entity.vo.RoleVO;
 
 /**
  * <p>
@@ -13,4 +16,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IRoleService extends IService<RolePO> {
 
+    /**
+     * queryPage
+     * @param dto
+     * @return
+     */
+    Page<RoleVO> queryPage(RolePageDTO dto);
 }

@@ -2,4 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mod.sys.dao.RoleDao">
 
+    <select id="queryPage" resultType="com.mod.sys.entity.vo.RoleVO">
+        select role_id roleId,role_name roleName,role_state roleState,remark
+        from sys_role
+        <where>
+            <if test="dto.roleName !=null and dto.roleName != ''">AND role_name LIKE CONCAT('%',#{roleName},'%')</if>
+        </where>
+    </select>
 </mapper>

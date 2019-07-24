@@ -15,7 +15,8 @@ import com.mod.common.web.BaseController;
  * @since 2019-07-23
  */
 @RestController
-@RequestMapping("/user/account-po")
+@RequestMapping("/user/account")
+
 public class AccountController extends BaseController {
 
 }

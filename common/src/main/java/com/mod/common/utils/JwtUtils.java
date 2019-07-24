@@ -46,22 +46,26 @@ public class JwtUtils{
      */
     public static String getOpenid(String token){
         try{
+            if(StringUtil.isEmpty(token)){
+                return "";
+            }
             DecodedJWT jwt = JWT.decode(token);
             return jwt.getClaim("openid").asString();
         }catch(JWTDecodeException e){
-            return null;
+
+            return "";
         }
     }
 
     public static String getUserName(String token){
         if(StringUtil.isEmpty(token)){
-            return null;
+            return "";
         }
         try{
             DecodedJWT jwt = JWT.decode(token);
             return jwt.getClaim("userName").asString();
         }catch(JWTDecodeException e){
-            return null;
+            return "";
         }
     }
 

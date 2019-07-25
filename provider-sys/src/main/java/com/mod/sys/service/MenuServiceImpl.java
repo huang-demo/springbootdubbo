@@ -1,6 +1,5 @@
 package com.mod.sys.service;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.mod.common.constant.ExceptionCode;
 import com.mod.common.constant.SysConstant;
@@ -11,6 +10,7 @@ import com.mod.sys.entity.dto.MenuQueryDTO;
 import com.mod.sys.entity.po.MenuPO;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mod.sys.entity.vo.MenuVO;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;

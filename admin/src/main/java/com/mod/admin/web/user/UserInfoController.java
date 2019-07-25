@@ -1,6 +1,6 @@
 package com.mod.admin.web.user;
 
-import com.alibaba.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.annotation.Reference;
 import com.mod.common.core.Result;
 import com.mod.common.web.BaseController;
 import com.mod.user.entity.dto.UserInfoIdDTO;

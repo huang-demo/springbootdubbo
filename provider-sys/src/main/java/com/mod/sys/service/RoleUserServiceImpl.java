@@ -1,9 +1,9 @@
 package com.mod.sys.service;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.mod.sys.dao.RoleUserDao;
 import com.mod.sys.entity.po.RoleUserPO;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.apache.dubbo.config.annotation.Service;
 
 /**
  * <p>

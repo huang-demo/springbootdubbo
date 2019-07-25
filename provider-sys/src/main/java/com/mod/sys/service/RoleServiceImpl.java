@@ -1,12 +1,12 @@
 package com.mod.sys.service;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mod.sys.dao.RoleDao;
 import com.mod.sys.entity.dto.RolePageDTO;
 import com.mod.sys.entity.po.RolePO;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mod.sys.entity.vo.RoleVO;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;

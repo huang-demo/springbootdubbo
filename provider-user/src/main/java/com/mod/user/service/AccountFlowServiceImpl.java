@@ -1,9 +1,8 @@
 package com.mod.user.service;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.mod.user.entity.po.AccountFlowPO;
 import com.mod.user.dao.AccountFlowDao;
-import com.mod.user.service.IAccountFlowService;
+import org.apache.dubbo.config.annotation.Service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 /**

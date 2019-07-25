@@ -1,6 +1,5 @@
 package com.mod.user.service;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mod.common.constant.ExceptionCode;
@@ -15,6 +14,7 @@ import com.mod.user.entity.dto.UserInfoIdDTO;
 import com.mod.user.entity.dto.UserInfoPageDTO;
 import com.mod.user.entity.po.UserInfoPO;
 import com.mod.user.entity.vo.UserInfoVO;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 

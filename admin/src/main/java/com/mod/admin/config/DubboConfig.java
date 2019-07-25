@@ -1,6 +1,7 @@
-package com.mod.produce.config;
+package com.mod.admin.config;
 
 
+import org.apache.dubbo.config.spring.context.annotation.DubboComponentScan;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
 import org.springframework.context.annotation.Configuration;
 

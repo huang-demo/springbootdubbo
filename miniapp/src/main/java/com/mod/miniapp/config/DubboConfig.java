@@ -1,4 +1,4 @@
-package com.mod.produce.config;
+package com.mod.miniapp.config;
 
 
 import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;

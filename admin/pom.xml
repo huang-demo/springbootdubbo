@@ -18,10 +18,11 @@
         <swagger.version>2.7.0</swagger.version>
         <freemarker.version>2.3.28</freemarker.version>
         <mybatis-plus.version>3.1.2</mybatis-plus.version>
-        <dubbo-spring.version>0.2.0</dubbo-spring.version>
         <mybatis-spring.version>2.1.0</mybatis-spring.version>
         <shiro.version>1.4.0</shiro.version>
         <kaptcha.version>0.0.9</kaptcha.version>
+        <dubbo-spring.version>2.7.1</dubbo-spring.version>
+        <dubbo.version>2.7.2</dubbo.version>
     </properties>
 
     <dependencies>
@@ -84,10 +85,40 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
         </dependency>
+
         <dependency>
-            <groupId>com.alibaba.boot</groupId>
+            <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>
             <version>${dubbo-spring.version}</version>
+        </dependency>
+
+        <!-- Dubbo -->
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>${dubbo.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>servlet-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Zookeeper dependencies -->
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-dependencies-zookeeper</artifactId>
+            <version>${dubbo.version}</version>
+            <type>pom</type>
         </dependency>
         <!-- shiro权限控制框架 -->
         <!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-spring -->

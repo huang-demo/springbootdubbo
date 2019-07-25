@@ -171,7 +171,7 @@
 
     <!--开发环境:打印控制台-->
     <springProfile name="dev">
-        <logger name="com.mod.user" level="debug"/>
+        <logger name="com.mod.sys" level="debug"/>
     </springProfile>
 
     <root level="info">

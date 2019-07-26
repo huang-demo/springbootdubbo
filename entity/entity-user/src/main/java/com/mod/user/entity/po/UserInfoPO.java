@@ -6,7 +6,11 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.mod.common.entity.po.BasePO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.experimental.Accessors;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * <p>
@@ -45,8 +49,35 @@ public class UserInfoPO extends BasePO{
 
     private Integer userType;
 
+    @Getter
+    public enum UserType{
+        //用户类型
+        FANS(1,"粉丝"),
+        AGENT(2,"代理商"),
+        SYSTEM_USER(8,"系统用户"),
+        SUPPER_ADMIN(9,"超级管理"),
+        ;
 
+        private Integer code;
+        private String name;
 
+        UserType(Integer code,String name){
+            this.code = code;
+            this.name = name;
+        }
+
+        private static Map<Integer,UserType> KEY_MAP;
+
+        static {
+            KEY_MAP = new LinkedHashMap<>(5);
+            for(UserType ty: UserType.values()){
+                KEY_MAP.put(ty.getCode(),ty);
+            }
+        }
+        public static UserType getUserType(Integer code){
+            return KEY_MAP.get(code);
+        }
+    }
 
 
 }

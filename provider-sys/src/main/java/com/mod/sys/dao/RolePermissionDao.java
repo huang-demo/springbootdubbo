@@ -1,7 +1,7 @@
 package com.mod.sys.dao;
 
+import com.mod.sys.entity.po.RolePermissionPO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.mod.sys.entity.po.RoleMenuPO;
 
 /**
  * <p>
@@ -9,8 +9,8 @@ import com.mod.sys.entity.po.RoleMenuPO;
  * </p>
  *
  * @author Mr.p
- * @since 2019-07-23
+ * @since 2019-07-26
  */
-public interface RoleMenuDao extends BaseMapper<RoleMenuPO> {
+public interface RolePermissionDao extends BaseMapper<RolePermissionPO> {
 
 }

@@ -12,10 +12,10 @@ import com.mod.common.web.BaseController;
  * </p>
  *
  * @author Mr.p
- * @since 2019-07-23
+ * @since 2019-07-26
  */
 @RestController
-@RequestMapping("/sys/role-menu")
-public class RoleMenuController extends BaseController {
+@RequestMapping("/sys/permission-po")
+public class PermissionController extends BaseController {
 
 }

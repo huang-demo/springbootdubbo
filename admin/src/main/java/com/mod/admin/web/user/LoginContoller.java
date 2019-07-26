@@ -1,6 +1,5 @@
 package com.mod.admin.web.user;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.mod.admin.auth.JwtToken;
 import com.mod.common.constant.SysConstant;
 import com.mod.common.core.Result;
@@ -10,6 +9,7 @@ import com.mod.user.entity.dto.LoginUserDTO;
 import com.mod.user.entity.dto.SysUserDTO;
 import com.mod.user.service.IUserInfoService;
 import io.swagger.annotations.Api;
+import org.apache.dubbo.config.annotation.Reference;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

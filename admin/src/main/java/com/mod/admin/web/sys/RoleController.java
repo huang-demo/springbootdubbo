@@ -1,7 +1,6 @@
 package com.mod.admin.web.sys;
 
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mod.common.core.Result;
 import com.mod.sys.entity.dto.RoleDTO;
@@ -11,6 +10,7 @@ import com.mod.sys.entity.vo.RoleVO;
 import com.mod.sys.service.IRoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -4,9 +4,7 @@ import com.mod.common.entity.po.BasePO;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-
 import java.time.LocalDateTime;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -17,36 +15,33 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author Mr.p
- * @since 2019-07-23
+ * @since 2019-07-26
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@TableName("sys_role_menu")
-public class RoleMenuPO extends BasePO{
+@TableName("sys_role_permission")
+public class RolePermissionPO extends BasePO {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * 主键
      */
-    @TableId(value = "role_menu_id", type = IdType.AUTO)
-    private Long roleMenuId;
+    @TableId(value = "role_permission_id", type = IdType.AUTO)
+    private Long rolePermissionId;
 
     /**
-     * 菜单id
-     */
-    private Long menuId;
-
-    /**
-     * 角色id
+     * 角色
      */
     private Long roleId;
 
     /**
-     * 是否删除
+     * 权限
      */
-    private Integer isDeleted;
+    private Long permissionId;
+
+
 
 
 }

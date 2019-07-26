@@ -83,7 +83,26 @@ CREATE TABLE `user_info` (
 /*Data for the table `user_info` */
 
 insert  into `user_info`(`user_id`,`user_name`,`password`,`open_id`,`avator`,`appid`,`phone`,`email`,`user_state`,`user_type`,`create_user`,`create_time`,`update_user`,`update_time`,`version`) values 
-(1,'admin','21232F297A57A5A743894A0E4A801FC3','xxx','xxx','','','',0,0,0,'2019-07-22 15:31:06',0,'2019-07-22 15:31:09',0);
+(1,'admin','21232F297A57A5A743894A0E4A801FC3','xxx','xxx','','','',0,9,0,'2019-07-22 15:31:06',0,'2019-07-22 15:31:09',0);
+
+/*Table structure for table `user_login_log` */
+
+DROP TABLE IF EXISTS `user_login_log`;
+
+CREATE TABLE `user_login_log` (
+  `login_log_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `user_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户',
+  `user_name` varchar(50) NOT NULL DEFAULT '' COMMENT '用户名',
+  `type` int(5) NOT NULL DEFAULT '0' COMMENT '登录类型 1 登录 2退出',
+  `create_user` bigint(20) NOT NULL DEFAULT '0',
+  `create_time` datetime NOT NULL,
+  `update_user` bigint(20) NOT NULL DEFAULT '0',
+  `update_time` datetime NOT NULL,
+  `version` int(5) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`login_log_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `user_login_log` */
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

@@ -1,12 +1,11 @@
 package com.mod.admin.filter;
 
 
-import com.alibaba.dubbo.common.Constants;
-import com.alibaba.dubbo.common.extension.Activate;
-import com.alibaba.dubbo.rpc.*;
 import com.mod.common.utils.GsonUtils;
 import io.micrometer.core.instrument.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.common.extension.Activate;
+import org.apache.dubbo.rpc.*;
 import org.slf4j.MDC;
 
 /**
@@ -14,12 +13,12 @@ import org.slf4j.MDC;
  * @Author Mr.p Email:huangdemo@shein.com
  * @Date create in 2019/7/23 17:26
  */
-@Activate(group = Constants.CONSUMER)
+@Activate(group = "admin-filter")
 @Slf4j
-public class ApiClientFilter implements Filter{
+public class ApiClientFilter implements Filter {
 
     @Override
-    public Result invoke(Invoker<?> invoker,Invocation invocation) throws RpcException{
+    public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
         String traceId = MDC.get("traceId");
         if (StringUtils.isNotBlank(traceId)) {
             RpcContext.getContext().setAttachment("traceId", traceId);

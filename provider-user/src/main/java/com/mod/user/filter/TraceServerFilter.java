@@ -1,11 +1,10 @@
 package com.mod.user.filter;
 
-import com.alibaba.dubbo.common.Constants;
-import com.alibaba.dubbo.common.extension.Activate;
-import com.alibaba.dubbo.rpc.*;
 import com.mod.common.utils.GsonUtils;
 import com.mod.common.utils.StringUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.common.extension.Activate;
+import org.apache.dubbo.rpc.*;
 import org.slf4j.MDC;
 
 /**
@@ -13,11 +12,11 @@ import org.slf4j.MDC;
  * @Author Mr.p Email:huangdemo@shein.com
  * @Date create in 2019/7/23 17:30
  */
-@Activate(group = Constants.PROVIDER)
+@Activate(group = "provider-user")
 @Slf4j
-public class TraceServerFilter  implements Filter{
+public class TraceServerFilter implements Filter {
     @Override
-    public Result invoke(Invoker<?> invoker,Invocation invocation) throws RpcException{
+    public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
         String traceId = RpcContext.getContext().getAttachment("traceId");
         if (StringUtil.hasLength(traceId)) {
             MDC.put("traceId", traceId);
@@ -28,7 +27,7 @@ public class TraceServerFilter  implements Filter{
         log.info("traceId- {}, method:{}.{}, request:{}", traceId,className , invocation.getMethodName(),req);
         Result result = invoker.invoke(invocation);
         Long takeTime = System.currentTimeMillis() - startTime;
-        log.info("traceId- {}, method:{}.{}, response:{}, time:{} ms",traceId,className , invocation.getMethodName(),GsonUtils.obj2Json(result), String.valueOf(takeTime));
+        log.info("traceId- {}, method:{}.{}, response:{}, time:{} ms",traceId,className , takeTime);
         return result;
     }
 

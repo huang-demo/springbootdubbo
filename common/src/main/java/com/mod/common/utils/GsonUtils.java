@@ -13,7 +13,7 @@ public class GsonUtils{
     public static Gson gson;
 
     static{
-        gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+        gson = new GsonBuilder().disableHtmlEscaping().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
     }
 
     public static String obj2Json(Object obj){

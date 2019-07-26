@@ -10,5 +10,18 @@
     <packaging>maven-plugin</packaging>
     <name>entity-sys</name>
     <url>http://maven.apache.org</url>
+    <dependencies>
 
+        <dependency>
+            <groupId>com.mod</groupId>
+            <artifactId>common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+        </dependency>
+
+    </dependencies>
 </project>

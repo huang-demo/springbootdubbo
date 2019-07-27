@@ -30,7 +30,9 @@ public class RequestInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        //打印请求信息
         SessionRequestContent.print();
+        //清空
         SessionRequestContent.remove();
     }
 }

@@ -7,3 +7,12 @@ server:
   port: 8080
 admin:
   isDev: true
+dubbo:
+  consumer:
+    check: false
+    filter: apiClientFilter
+  application:
+    name: admin
+  protocol:
+    name: dubbo
+    port: 20890

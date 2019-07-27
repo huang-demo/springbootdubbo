@@ -19,7 +19,7 @@ import java.util.List;
  * @author Mr.p
  * @since 2019-07-23
  */
-@Service
+@Service(token = "sys")
 public class RoleServiceImpl extends ServiceImpl<RoleDao,RolePO> implements IRoleService {
 
     @Autowired

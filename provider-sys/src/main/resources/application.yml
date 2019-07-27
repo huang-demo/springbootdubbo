@@ -8,3 +8,15 @@ spring:
     time-zone: GMT+8
 logging:
   config: classpath:logback-spring.xml
+dubbo:
+  application:
+    name: provider-sys
+  provider:
+    timeout: 5000
+    filter: traceServerFilter
+  scan:
+    base-packages: com.mod.sys.service
+  protocol:
+    name: dubbo
+    port: 20890
+    accesslog: true

@@ -11,6 +11,10 @@ public class SysConstant{
     public static final String TOKEN = "token";
 
     /**
+     * 分布式请求trace
+     */
+    public static final String UNIQUE_ID = "traceId";
+    /**
      * 登录加密
      */
     public static final String LOGIN_SECRET = "^Hw$xj7";

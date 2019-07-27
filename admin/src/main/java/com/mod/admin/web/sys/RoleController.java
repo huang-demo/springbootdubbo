@@ -3,8 +3,10 @@ package com.mod.admin.web.sys;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mod.common.core.Result;
+import com.mod.common.web.BaseController;
 import com.mod.sys.entity.dto.RoleDTO;
 import com.mod.sys.entity.dto.RolePageDTO;
+import com.mod.sys.entity.dto.RolePermissionDTO;
 import com.mod.sys.entity.po.RolePO;
 import com.mod.sys.entity.vo.RoleVO;
 import com.mod.sys.service.IRoleService;
@@ -14,9 +16,7 @@ import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
-import com.mod.common.web.BaseController;
 
 /**
  * <p>
@@ -43,11 +43,20 @@ public class RoleController extends BaseController{
         roleService.saveOrUpdate(po);
         return success();
     }
+    @PostMapping("serPermission")
+    @ApiOperation("角色设置权限")
+    public Result serPermission(@RequestBody RolePermissionDTO dto){
+        return Result.success();
+    }
+
+
     @PostMapping("queryPage")
     @ApiOperation(value = "列表查询",response = RoleVO.class)
     public Result queryPage(@RequestBody RolePageDTO dto){
         Page<RoleVO> page = roleService.queryPage(dto);
         return success(page);
     }
+
+
 
 }

@@ -41,7 +41,7 @@ public class MenuController extends BaseController{
     }
 
     @PostMapping("/queryMenu")
-    @ApiOperation(value = "查询菜单", response = MenuVO.class)
+    @ApiOperation(value = "查询菜单-不涉及權限", response = MenuVO.class)
     public Result queryMenu(@RequestBody MenuQueryDTO dto){
         return Result.success(menuService.queryMenu(dto));
     }

@@ -2,6 +2,7 @@ package com.mod.admin.web.sys;
 
 
 import com.mod.common.core.Result;
+import com.mod.common.web.BaseController;
 import com.mod.sys.entity.dto.DictDTO;
 import com.mod.sys.service.IDictService;
 import io.swagger.annotations.ApiOperation;
@@ -9,9 +10,7 @@ import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
-import com.mod.common.web.BaseController;
 
 /**
  * <p>

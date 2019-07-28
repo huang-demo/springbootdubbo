@@ -23,6 +23,7 @@
         <kaptcha.version>0.0.9</kaptcha.version>
         <dubbo-spring.version>2.7.1</dubbo-spring.version>
         <dubbo.version>2.7.2</dubbo.version>
+        <apollo.version>1.1.0</apollo.version>
     </properties>
 
     <dependencies>
@@ -147,6 +148,17 @@
             <groupId>com.github.axet</groupId>
             <artifactId>kaptcha</artifactId>
             <version>${kaptcha.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ctrip.framework.apollo</groupId>
+            <artifactId>apollo-client</artifactId>
+            <version>${apollo.version}</version>
+        </dependency>
+        <!-- for refresh scope demo -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-context</artifactId>
+            <version>2.0.1.RELEASE</version>
         </dependency>
     </dependencies>
 

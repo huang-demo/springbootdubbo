@@ -36,7 +36,7 @@
         <guava.version>27.0.1-jre</guava.version>
         <druid.version>1.1.12</druid.version>
         <jedis.version>2.9.0</jedis.version>
-        <netty.version>4.1.32.Final</netty.version>
+        <netty.version>4.1.36.Final</netty.version>
         <validation.version>2.0.1.Final</validation.version>
         <mybatis-spring.version>2.1.0</mybatis-spring.version>
     </properties>

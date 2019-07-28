@@ -2,6 +2,7 @@ package com.mod.sys.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.mod.sys.entity.bo.UrlRoleBO;
 import com.mod.sys.entity.dto.RolePageDTO;
 import com.mod.sys.entity.po.RolePO;
 import com.mod.sys.entity.vo.RoleVO;
@@ -26,4 +27,10 @@ public interface RoleDao extends BaseMapper<RolePO> {
      * @return
      */
     List<RoleVO> queryPage(@Param("page") Page<RoleVO> page,@Param("dto") RolePageDTO dto);
+
+    /**
+     * getRoleUrl
+     * @return
+     */
+    List<UrlRoleBO> getRoleUrl();
 }

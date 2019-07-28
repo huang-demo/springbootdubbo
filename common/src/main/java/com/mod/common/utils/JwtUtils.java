@@ -56,6 +56,17 @@ public class JwtUtils{
             return "";
         }
     }
+    public static Long getUserId(String token){
+        try{
+            if(StringUtil.isEmpty(token)){
+                return 0L;
+            }
+            DecodedJWT jwt = JWT.decode(token);
+            return jwt.getClaim("userId").asLong();
+        }catch(JWTDecodeException e){
+            return 0L;
+        }
+    }
 
     public static String getUserName(String token){
         if(StringUtil.isEmpty(token)){

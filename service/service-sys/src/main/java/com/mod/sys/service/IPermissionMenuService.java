@@ -1,5 +1,6 @@
 package com.mod.sys.service;
 
+import com.mod.sys.entity.dto.PermissionMenuDTO;
 import com.mod.sys.entity.po.PermissionMenuPO;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +14,15 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IPermissionMenuService extends IService<PermissionMenuPO> {
 
+    /**
+     * setMenu
+     * @param permissionMenuDTO
+     */
+    void setMenu(PermissionMenuDTO permissionMenuDTO);
+
+    /**
+     * resetMenu
+     * @param permissionId
+     */
+    void resetMenu(Long permissionId);
 }

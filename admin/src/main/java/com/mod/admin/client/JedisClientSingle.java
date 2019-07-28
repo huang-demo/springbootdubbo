@@ -1,13 +1,16 @@
 package com.mod.admin.client;
 
 import com.mod.common.redis.JedisClient;
+import com.mod.common.redis.RedisAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
+import java.util.Set;
+
 @Component
-public class JedisClientSingle implements JedisClient {
+public class JedisClientSingle extends RedisAdapter implements JedisClient {
     @Autowired
     private JedisPool jedisPool;
 
@@ -20,18 +23,18 @@ public class JedisClientSingle implements JedisClient {
     @Override
     public String set(String key, String val, Integer expire) {
         Jedis jedis = jedisPool.getResource();
-        return jedis.setex(key,expire.intValue(),val);
+        return jedis.setex(key, expire.intValue(), val);
     }
 
     @Override
-    public boolean lock(String key,String val,Long expire){
+    public boolean lock(String key, String val, Long expire) {
         Jedis jedis = jedisPool.getResource();
 
-        return "OK".equals(jedis.set(key,val,"NX","EX",expire));
+        return "OK".equals(jedis.set(key, val, "NX", "EX", expire));
     }
 
     @Override
-    public boolean unlock(String key,String val){
+    public boolean unlock(String key, String val) {
         return false;
     }
 
@@ -60,15 +63,15 @@ public class JedisClientSingle implements JedisClient {
     }
 
     @Override
-    public Long incrBy(String key,Long val){
+    public Long incrBy(String key, Long val) {
         Jedis jedis = jedisPool.getResource();
-        return jedis.incrBy(key,val);
+        return jedis.incrBy(key, val);
     }
 
     @Override
-    public Long decrBy(String key,Long decr){
+    public Long decrBy(String key, Long decr) {
         Jedis jedis = jedisPool.getResource();
-        return jedis.decrBy(key,decr);
+        return jedis.decrBy(key, decr);
     }
 
     @Override
@@ -105,9 +108,28 @@ public class JedisClientSingle implements JedisClient {
     public Long setNX(String key, String val, Integer expire) {
         Jedis jedis = jedisPool.getResource();
         Long setnx = jedis.setnx(key, val);
-        if(setnx!=null){
-            jedis.expire(key,expire);
+        if (setnx != null) {
+            jedis.expire(key, expire);
         }
         return setnx;
+    }
+
+    @Override
+    public Long sAdd(String key, String... value) {
+        Jedis jedis = jedisPool.getResource();
+
+        return jedis.sadd(key, value);
+    }
+
+    @Override
+    public Set<String> sMembers(String key) {
+        return jedisPool.getResource().smembers(key);
+    }
+
+    @Override
+    public Set<String> sInter(String... key) {
+        Jedis jedis = jedisPool.getResource();
+
+        return jedis.sinter(key);
     }
 }

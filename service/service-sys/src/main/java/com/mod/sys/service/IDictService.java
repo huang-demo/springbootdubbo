@@ -1,5 +1,6 @@
 package com.mod.sys.service;
 
+import com.mod.sys.entity.dto.DictDTO;
 import com.mod.sys.entity.po.DictPO;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +14,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IDictService extends IService<DictPO> {
 
+    /**
+     * 插入或者更新
+     * @param dto
+     * @return
+     */
+    Long insertOrUpdate(DictDTO dto);
 }

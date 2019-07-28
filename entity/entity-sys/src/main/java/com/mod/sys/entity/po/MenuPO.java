@@ -1,12 +1,9 @@
 package com.mod.sys.entity.po;
 
-import com.mod.common.entity.po.BasePO;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-
-import java.time.LocalDateTime;
-
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.mod.common.entity.po.BasePO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -78,6 +75,7 @@ public class MenuPO extends BasePO{
         DIR(0,"目录"),
         MENU(1,"菜单"),
         BUTTON(2,"按钮"),
+        URL(3,"链接"),
         ;
         private Integer code;
         private String name;

@@ -9,6 +9,7 @@ import com.mod.sys.entity.dto.RolePageDTO;
 import com.mod.sys.entity.dto.RolePermissionDTO;
 import com.mod.sys.entity.po.RolePO;
 import com.mod.sys.entity.vo.RoleVO;
+import com.mod.sys.service.IRolePermissionService;
 import com.mod.sys.service.IRoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -33,6 +34,9 @@ public class RoleController extends BaseController{
     @Reference
     private IRoleService roleService;
 
+    @Reference
+    private IRolePermissionService rolePermissionService;
+
     @PostMapping("saveOrUpdate")
     @ApiOperation("保存/更新")
     public Result saveOrUpdate(@RequestBody RoleDTO dto){
@@ -46,6 +50,7 @@ public class RoleController extends BaseController{
     @PostMapping("serPermission")
     @ApiOperation("角色设置权限")
     public Result serPermission(@RequestBody RolePermissionDTO dto){
+        rolePermissionService.setPermission(dto);
         return Result.success();
     }
 

@@ -1,5 +1,6 @@
 package com.mod.sys.service;
 
+import com.mod.sys.entity.dto.RolePermissionDTO;
 import com.mod.sys.entity.po.RolePermissionPO;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +14,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IRolePermissionService extends IService<RolePermissionPO> {
 
+    /**
+     * setPermission
+     * @param dto
+     */
+    void setPermission(RolePermissionDTO dto);
 }

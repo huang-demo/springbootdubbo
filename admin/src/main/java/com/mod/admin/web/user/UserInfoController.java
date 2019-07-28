@@ -1,5 +1,6 @@
 package com.mod.admin.web.user;
 
+import io.swagger.annotations.Api;
 import org.apache.dubbo.config.annotation.Reference;
 import com.mod.common.core.Result;
 import com.mod.common.web.BaseController;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/user")
+@Api(tags = "用户中心-用户信息")
 public class UserInfoController extends BaseController{
 
     @Reference

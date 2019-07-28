@@ -9,4 +9,13 @@
             <if test="dto.roleName !=null and dto.roleName != ''">AND role_name LIKE CONCAT('%',#{roleName},'%')</if>
         </where>
     </select>
+    <select id="getRoleUrl" resultType="com.mod.sys.entity.bo.UrlRoleBO">
+        SELECT sm.`url` url,sr.`role_code` roleCode
+        FROM `sys_permission_menu` spm
+        INNER JOIN `sys_menu` sm ON spm.menu_id=sm.`menu_id`
+        INNER JOIN `sys_permission` sp ON sp.`permission_id`=spm.`permission_id`
+        LEFT JOIN `sys_role_permission` srp ON sp.`permission_id`=srp.`permission_id`
+        LEFT JOIN `sys_role` sr ON srp.`role_id`=sr.`role_id`
+
+    </select>
 </mapper>

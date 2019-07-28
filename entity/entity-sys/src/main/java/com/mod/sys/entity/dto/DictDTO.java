@@ -10,4 +10,5 @@ public class DictDTO implements Serializable {
     private String code;
     private String name;
     private String value;
+    private Integer state;
 }

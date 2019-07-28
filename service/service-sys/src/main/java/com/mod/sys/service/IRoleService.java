@@ -1,10 +1,13 @@
 package com.mod.sys.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.mod.sys.entity.bo.UrlRoleBO;
 import com.mod.sys.entity.dto.RolePageDTO;
 import com.mod.sys.entity.po.RolePO;
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.mod.sys.entity.vo.RoleVO;
+
+import java.util.List;
 
 /**
  * <p>
@@ -22,4 +25,15 @@ public interface IRoleService extends IService<RolePO> {
      * @return
      */
     Page<RoleVO> queryPage(RolePageDTO dto);
+
+    /**
+     * path:【role1,role2】
+     */
+    void cacheRolePermission();
+
+    /**
+     * getRoleUrl
+     * @return
+     */
+    List<UrlRoleBO> getRoleUrl();
 }

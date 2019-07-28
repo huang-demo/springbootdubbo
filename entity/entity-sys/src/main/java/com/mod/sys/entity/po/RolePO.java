@@ -1,12 +1,9 @@
 package com.mod.sys.entity.po;
 
-import com.mod.common.entity.po.BasePO;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-
-import java.time.LocalDateTime;
-
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.mod.common.entity.po.BasePO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -37,6 +34,8 @@ public class RolePO extends BasePO{
      * 角色名称
      */
     private String roleName;
+
+    private String roleCode;
 
     /**
      * 角色状态

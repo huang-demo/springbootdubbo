@@ -1,12 +1,13 @@
 package com.mod.admin.client;
 
 import com.mod.common.redis.JedisClient;
+import com.mod.common.redis.RedisAdapter;
 import org.apache.shiro.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import redis.clients.jedis.JedisCluster;
 
 //@Component
-public class JedisClientCluster implements JedisClient {
+public class JedisClientCluster extends RedisAdapter implements JedisClient {
     @Autowired
     private JedisCluster jedisCluster;
 

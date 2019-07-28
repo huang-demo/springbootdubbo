@@ -29,26 +29,26 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/sys/menu")
 @Api(tags = "系统模块-菜单管理")
-public class MenuController extends BaseController{
+public class MenuController extends BaseController {
     @Reference
     private IMenuService menuService;
 
     @PostMapping("/saveOrUpdate")
     @ApiOperation(value = "保存或者更新")
-    public Result saveOrUpdate(@Valid @RequestBody MenuDTO menuDTO){
+    public Result saveOrUpdate(@Valid @RequestBody MenuDTO menuDTO) {
         menuService.saveOrUpdate(menuDTO);
         return success();
     }
 
     @PostMapping("/queryMenu")
     @ApiOperation(value = "查询菜单-不涉及權限", response = MenuVO.class)
-    public Result queryMenu(@RequestBody MenuQueryDTO dto){
+    public Result queryMenu(@RequestBody MenuQueryDTO dto) {
         return Result.success(menuService.queryMenu(dto));
     }
 
     @PostMapping("/checkName")
     @ApiOperation(value = "检查菜单名称是否重复", response = Boolean.class)
-    public Result checkName(@RequestBody MenuDTO menuDTO){
+    public Result checkName(@RequestBody MenuDTO menuDTO) {
         return success(menuService.checkMenuName(menuDTO));
     }
 

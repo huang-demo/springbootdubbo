@@ -2,8 +2,10 @@ package com.mod.admin.web.sys;
 
 
 import com.mod.common.core.Result;
+import com.mod.common.web.BaseController;
 import com.mod.sys.entity.dto.PermissionDTO;
 import com.mod.sys.entity.dto.PermissionMenuDTO;
+import com.mod.sys.service.IPermissionMenuService;
 import com.mod.sys.service.IPermissionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -11,9 +13,9 @@ import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
-import com.mod.common.web.BaseController;
+
+import javax.validation.Valid;
 
 /**
  * <p>
@@ -31,19 +33,25 @@ public class PermissionController extends BaseController {
     @Reference
     private IPermissionService permissionService;
 
+    @Reference
+    private IPermissionMenuService permissionMenuService;
+
     @PostMapping("/saveOrUpdate")
     @ApiOperation("保存或者更新")
     public Result saveOrUpdate(@RequestBody PermissionDTO permissionDTO){
+        permissionService.insertOrUpdate(permissionDTO);
         return Result.success();
     }
     @PostMapping("/setMenu")
     @ApiOperation("设置权限-菜单")
     public Result setMenu(@RequestBody PermissionMenuDTO permissionMenuDTO){
+        permissionMenuService.setMenu(permissionMenuDTO);
         return Result.success();
     }
     @PostMapping("/resetMenu")
     @ApiOperation("重置权限")
-    public Result resetMenu(@RequestBody PermissionMenuDTO dto){
+    public Result resetMenu(@Valid @RequestBody PermissionMenuDTO dto){
+        permissionMenuService.resetMenu(dto.getPermissionId());
         return Result.success();
     }
 }

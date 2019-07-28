@@ -10,5 +10,7 @@ public class PermissionDTO implements Serializable {
     private Long permissionId;
     @ApiModelProperty("权限名称")
     private String permissionName;
+    private String permissionCode;
+    private Long pid;
 
 }

@@ -1,7 +1,8 @@
 package com.mod.sys.service;
 
-import com.mod.sys.entity.po.PermissionPO;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.mod.sys.entity.dto.PermissionDTO;
+import com.mod.sys.entity.po.PermissionPO;
 
 /**
  * <p>
@@ -12,5 +13,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2019-07-26
  */
 public interface IPermissionService extends IService<PermissionPO> {
+
+    /**
+     * 保存或者更新
+     * @param permissionDTO
+     * @return
+     */
+    Long insertOrUpdate(PermissionDTO permissionDTO);
 
 }

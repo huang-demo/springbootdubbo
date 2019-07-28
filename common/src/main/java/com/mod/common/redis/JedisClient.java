@@ -1,5 +1,7 @@
 package com.mod.common.redis;
 
+import java.util.Set;
+
 public interface JedisClient {
     /**
      * 设置字符串
@@ -11,7 +13,6 @@ public interface JedisClient {
     String set(String key, String value);
 
     /**
-     *
      * @param key
      * @param val
      * @param expire 秒
@@ -20,7 +21,6 @@ public interface JedisClient {
     String set(String key, String val, Integer expire);
 
     /**
-     *
      * @param key
      * @param val
      * @param expire
@@ -29,7 +29,6 @@ public interface JedisClient {
     boolean lock(String key, String val, Long expire);
 
     /**
-     *
      * @param key
      * @param val
      * @return
@@ -71,7 +70,6 @@ public interface JedisClient {
     Long incr(String key);
 
     /**
-     *
      * @param key
      * @param val
      * @return
@@ -87,7 +85,6 @@ public interface JedisClient {
     Long decr(String key);
 
     /**
-     *
      * @param key
      * @param decr
      * @return
@@ -137,6 +134,33 @@ public interface JedisClient {
 
 
     Long setNX(String key, String val, Integer expire);
+
+
+    /**
+     * set 添加
+     *
+     * @param key
+     * @param value
+     * @return
+     */
+    Long sAdd(String key, String... value);
+
+
+    /**
+     *
+     * @param key
+     * @return
+     */
+    Set<String> sMembers(String key);
+
+    /**
+     * 获取多个集合公共部分
+     *
+     * @param key
+     * @return
+     */
+
+    Set<String> sInter(String... key);
 
 
 }

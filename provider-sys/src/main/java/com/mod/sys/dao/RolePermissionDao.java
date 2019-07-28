@@ -2,6 +2,7 @@ package com.mod.sys.dao;
 
 import com.mod.sys.entity.po.RolePermissionPO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -13,4 +14,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface RolePermissionDao extends BaseMapper<RolePermissionPO> {
 
+    /**
+     * resetPermission
+     * @param roleId
+     */
+    void resetPermission(@Param("roleId") Long roleId);
 }

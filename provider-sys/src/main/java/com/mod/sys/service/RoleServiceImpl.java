@@ -2,10 +2,12 @@ package com.mod.sys.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mod.sys.dao.RoleDao;
+import com.mod.sys.entity.bo.UrlRoleBO;
 import com.mod.sys.entity.dto.RolePageDTO;
 import com.mod.sys.entity.po.RolePO;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mod.sys.entity.vo.RoleVO;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,6 +22,7 @@ import java.util.List;
  * @since 2019-07-23
  */
 @Service(token = "sys")
+@Slf4j
 public class RoleServiceImpl extends ServiceImpl<RoleDao,RolePO> implements IRoleService {
 
     @Autowired
@@ -30,5 +33,15 @@ public class RoleServiceImpl extends ServiceImpl<RoleDao,RolePO> implements IRol
         List<RoleVO> list = roleDao.queryPage(page,dto);
         page.setRecords(list);
         return page;
+    }
+
+    @Override
+    public void cacheRolePermission() {
+        log.info("缓存url:role");
+    }
+
+    @Override
+    public List<UrlRoleBO> getRoleUrl() {
+        return roleDao.getRoleUrl();
     }
 }

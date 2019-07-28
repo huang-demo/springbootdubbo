@@ -1,6 +1,7 @@
 package com.mod.admin.web.sys;
 
 
+import com.mod.admin.cache.UrlRoleCache;
 import com.mod.common.core.Result;
 import com.mod.common.web.BaseController;
 import com.mod.sys.entity.dto.PermissionDTO;
@@ -10,6 +11,7 @@ import com.mod.sys.service.IPermissionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.Reference;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +32,8 @@ import javax.validation.Valid;
 @Api(tags = "系统模块-权限配置")
 public class PermissionController extends BaseController {
 
+    @Autowired
+    private UrlRoleCache urlRoleCache;
     @Reference
     private IPermissionService permissionService;
 
@@ -52,6 +56,12 @@ public class PermissionController extends BaseController {
     @ApiOperation("重置权限")
     public Result resetMenu(@Valid @RequestBody PermissionMenuDTO dto){
         permissionMenuService.resetMenu(dto.getPermissionId());
+        return Result.success();
+    }
+    @PostMapping("/cacheRoleUrl")
+    @ApiOperation("缓存所有url")
+    public Result cacheRoleUrl(){
+        urlRoleCache.init();
         return Result.success();
     }
 }

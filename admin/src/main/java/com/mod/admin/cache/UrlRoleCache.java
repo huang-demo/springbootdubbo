@@ -25,8 +25,7 @@ public class UrlRoleCache {
         for (UrlRoleBO bo : list) {
             String key = getKey(bo.getUrl());
             log.info("add cache {}:{}",key,bo.getRoleCode());
-            Long add = jedisClient.sAdd(key, bo.getRoleCode());
-            log.info("res:{}",add);
+            log.info("res:{}",jedisClient.sAdd(key, bo.getRoleCode()));
         }
 
     }

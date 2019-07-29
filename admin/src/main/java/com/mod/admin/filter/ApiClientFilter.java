@@ -4,7 +4,7 @@ package com.mod.admin.filter;
 import com.mod.common.constant.RpcConstant;
 import com.mod.common.threadlocal.SessionRequestContent;
 import com.mod.common.utils.GsonUtils;
-import io.micrometer.core.instrument.util.StringUtils;
+import com.mod.common.utils.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.common.extension.Activate;
 import org.apache.dubbo.rpc.*;
@@ -24,10 +24,10 @@ public class ApiClientFilter implements Filter {
         String traceId = MDC.get(RpcConstant.TRACE_KEY);
         SessionRequestContent.getRequest();
         String token = MDC.get(RpcConstant.USER_TOKEN);
-        if (StringUtils.isNotBlank(traceId)) {
+        if (StringUtil.hasLength(traceId)) {
             RpcContext.getContext().setAttachment(RpcConstant.TRACE_KEY, traceId);
         }
-        if(StringUtils.isNotBlank(token)){
+        if(StringUtil.hasLength(token)){
             RpcContext.getContext().setAttachment(RpcConstant.USER_TOKEN,token);
         }
         String className = invoker.getInterface().getName();

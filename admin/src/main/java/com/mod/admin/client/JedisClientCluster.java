@@ -9,7 +9,7 @@ import redis.clients.jedis.JedisCluster;
 
 import java.util.Set;
 
-@Component
+//@Component
 public class JedisClientCluster extends RedisAdapter implements JedisClient {
     @Autowired
     private JedisCluster jedisCluster;

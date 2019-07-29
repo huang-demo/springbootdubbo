@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -33,9 +34,9 @@ public class PermissionInterceptor implements HandlerInterceptor{
 
         log.info("校验当前用户是否拥有权限");
         //开发环境或者超级管理员不管直接放行
-        if (isDev || SysConstant.SUPPER_ADMIN.equals(JwtUtils.getUserId(request.getHeader(SysConstant.TOKEN)))) {
-            return true;
-        }
+//        if (isDev || SysConstant.SUPPER_ADMIN.equals(JwtUtils.getUserId(request.getHeader(SysConstant.TOKEN)))) {
+//            return true;
+//        }
         String uri = request.getRequestURI();
         Set<String> roles = authCache.getRoles(uri);
         log.info("uri:{},拥有权限的角色有:{}",uri,ListUtil.list2Str(roles));

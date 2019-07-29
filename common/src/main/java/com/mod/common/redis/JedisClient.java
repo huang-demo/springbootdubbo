@@ -1,5 +1,7 @@
 package com.mod.common.redis;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public interface JedisClient {
@@ -11,6 +13,13 @@ public interface JedisClient {
      * @return
      */
     String set(String key, String value);
+
+    /**
+     * 批量添加
+     * @param map
+     * @return
+     */
+    Integer batchAdd(Map<String,String> map);
 
     /**
      * @param key
@@ -146,6 +155,12 @@ public interface JedisClient {
     Long sAdd(String key, String... value);
 
 
+    /**
+     *
+     * @param map
+     * @return
+     */
+    Integer batchSAdd(Map<String,List<String>> map);
     /**
      *
      * @param key

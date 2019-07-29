@@ -2,14 +2,20 @@ package com.mod.admin.client;
 
 import com.mod.common.redis.JedisClient;
 import com.mod.common.redis.RedisAdapter;
+import com.mod.common.utils.ListUtil;
+import com.mod.common.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.Pipeline;
+import redis.clients.jedis.Response;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
-//@Component
+@Component
 public class JedisClientSingle extends RedisAdapter implements JedisClient {
     @Autowired
     private JedisPool jedisPool;
@@ -18,6 +24,16 @@ public class JedisClientSingle extends RedisAdapter implements JedisClient {
     public String set(String key, String value) {
         Jedis jedis = jedisPool.getResource();
         return jedis.set(key, value);
+    }
+
+    @Override
+    public Integer batchAdd(Map<String,String> map){
+        Jedis jedis = jedisPool.getResource();
+        Pipeline pp = jedis.pipelined();
+        for(Map.Entry<String,String> entry: map.entrySet()){
+            pp.set(entry.getKey(),entry.getValue());
+        }
+        return pp.syncAndReturnAll().size();
     }
 
     @Override
@@ -117,19 +133,29 @@ public class JedisClientSingle extends RedisAdapter implements JedisClient {
     @Override
     public Long sAdd(String key, String... value) {
         Jedis jedis = jedisPool.getResource();
-
         return jedis.sadd(key, value);
     }
 
     @Override
+    public Integer batchSAdd(Map<String,List<String>> map){
+        Pipeline pipelined = jedisPool.getResource().pipelined();
+        for(Map.Entry<String,List<String>> entry: map.entrySet()){
+            List<String> list = entry.getValue();
+            pipelined.sadd(entry.getKey(),ListUtil.list2Str(list).split(","));
+        }
+        List<Object> list = pipelined.syncAndReturnAll();
+        return list.size();
+    }
+
+    @Override
     public Set<String> sMembers(String key) {
-        return jedisPool.getResource().smembers(key);
+        Jedis jedis = jedisPool.getResource();
+        return jedis.smembers(key);
     }
 
     @Override
     public Set<String> sInter(String... key) {
         Jedis jedis = jedisPool.getResource();
-
         return jedis.sinter(key);
     }
 }

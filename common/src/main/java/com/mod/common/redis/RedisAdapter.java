@@ -1,10 +1,17 @@
 package com.mod.common.redis;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class RedisAdapter implements JedisClient{
     @Override
     public String set(String key, String value) {
+        return null;
+    }
+
+    @Override
+    public Integer batchAdd(Map<String,String> map){
         return null;
     }
 
@@ -85,6 +92,11 @@ public class RedisAdapter implements JedisClient{
 
     @Override
     public Long sAdd(String key, String... value) {
+        return null;
+    }
+
+    @Override
+    public Integer batchSAdd(Map<String,List<String>> map){
         return null;
     }
 

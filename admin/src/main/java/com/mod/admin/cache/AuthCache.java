@@ -8,31 +8,39 @@ import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Component
 @Slf4j
 public class AuthCache{
-    private static final String prefix = "auth.set";
+    private static final String prefix = "auth:string";
     @Autowired
     private JedisClient jedisClient;
     @Reference
     private IRoleService roleService;
 
     public void init() {
+
         List<UrlRoleBO> list = roleService.getRoleUrl();
-        log.info("size:{}",list.size());
+        Map<String,List<String>> map = new HashMap<>(list.size()/2);
         for (UrlRoleBO bo : list) {
             String key = getUrlKey(bo.getUrl());
-            log.info("add cache {}:{}",key,bo.getRoleCode());
-            log.info("res:{}",jedisClient.sAdd(key, bo.getRoleCode()));
+            if(map.containsKey(key)){
+                map.get(key).add(bo.getRoleCode());
+            }else{
+                List<String> sb = new ArrayList<>(5);
+                sb.add(bo.getRoleCode());
+                map.put(key,sb);
+            }
         }
 
+        Integer count = jedisClient.batchSAdd(map);
+
+        log.info("init url role ,size:{}",count);
     }
 
     private String getUrlKey(String url){
-        return prefix+url.replaceAll("/",".");
+        return prefix+url.replaceAll("/",":");
     }
 
     public Set<String> getRoles(String url){

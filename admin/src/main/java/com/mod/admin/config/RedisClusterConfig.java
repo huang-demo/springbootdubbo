@@ -10,7 +10,7 @@ import redis.clients.jedis.JedisCluster;
 import java.util.HashSet;
 import java.util.Set;
 
-@Configuration
+//@Configuration
 @Slf4j
 public class RedisClusterConfig{
 

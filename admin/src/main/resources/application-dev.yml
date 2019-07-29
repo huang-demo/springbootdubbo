@@ -1,14 +1,14 @@
 
-spring:
-  datasource:
-    driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.86.100:3306/sd_user?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
-    username: root
-    password: admin
-  redis:
-    host: localhost
-    port: 6379
+#spring:
+#  datasource:
+#    driverClassName: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://192.168.86.100:3306/sd_user?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+#    username: root
+#    password: admin
+#  redis:
+#    host: localhost
+#    port: 6379
 dubbo:
   registry:
-    address: zookeeper://192.168.86.100:2181
+    address: zookeeper://192.168.131.102:2181
     file: ${user.home}/dubbo-cache/${spring.application.name}/dubbo.cache

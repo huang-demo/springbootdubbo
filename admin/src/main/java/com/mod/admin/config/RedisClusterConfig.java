@@ -3,13 +3,14 @@ package com.mod.admin.config;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
 
 import java.util.HashSet;
 import java.util.Set;
 
-//@Configuration
+@Configuration
 @Slf4j
 public class RedisClusterConfig{
 

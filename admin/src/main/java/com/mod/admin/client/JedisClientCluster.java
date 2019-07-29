@@ -4,9 +4,12 @@ import com.mod.common.redis.JedisClient;
 import com.mod.common.redis.RedisAdapter;
 import org.apache.shiro.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import redis.clients.jedis.JedisCluster;
 
-//@Component
+import java.util.Set;
+
+@Component
 public class JedisClientCluster extends RedisAdapter implements JedisClient {
     @Autowired
     private JedisCluster jedisCluster;
@@ -99,5 +102,20 @@ public class JedisClientCluster extends RedisAdapter implements JedisClient {
             jedisCluster.expire(key,expire);
         }
         return setnx;
+    }
+
+    @Override
+    public Long sAdd(String key,String... values){
+        return jedisCluster.sadd(key,values);
+    }
+
+    @Override
+    public Set<String> sMembers(String key){
+        return jedisCluster.smembers(key);
+    }
+
+    @Override
+    public Set<String> sInter(String... keys){
+        return jedisCluster.sinter(keys);
     }
 }

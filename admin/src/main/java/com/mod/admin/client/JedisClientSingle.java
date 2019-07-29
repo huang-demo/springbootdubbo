@@ -9,7 +9,7 @@ import redis.clients.jedis.JedisPool;
 
 import java.util.Set;
 
-@Component
+//@Component
 public class JedisClientSingle extends RedisAdapter implements JedisClient {
     @Autowired
     private JedisPool jedisPool;

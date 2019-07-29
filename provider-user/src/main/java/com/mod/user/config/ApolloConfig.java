@@ -1,4 +1,4 @@
-package com.mod.admin.config;
+package com.mod.user.config;
 
 import com.ctrip.framework.apollo.model.ConfigChange;
 import com.ctrip.framework.apollo.model.ConfigChangeEvent;
@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableApolloConfig
 @Slf4j
-public class ApolloConfig  {
+public class ApolloConfig{
     @Autowired
     private RefreshScope refreshScope;
 
@@ -29,5 +29,4 @@ public class ApolloConfig  {
 
         }
     }
-
 }

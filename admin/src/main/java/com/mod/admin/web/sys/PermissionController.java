@@ -1,7 +1,7 @@
 package com.mod.admin.web.sys;
 
 
-import com.mod.admin.cache.UrlRoleCache;
+import com.mod.admin.cache.AuthCache;
 import com.mod.common.core.Result;
 import com.mod.common.web.BaseController;
 import com.mod.sys.entity.dto.PermissionDTO;
@@ -33,7 +33,7 @@ import javax.validation.Valid;
 public class PermissionController extends BaseController {
 
     @Autowired
-    private UrlRoleCache urlRoleCache;
+    private AuthCache authCache;
     @Reference
     private IPermissionService permissionService;
 
@@ -61,7 +61,7 @@ public class PermissionController extends BaseController {
     @PostMapping("/cacheRoleUrl")
     @ApiOperation("缓存所有url")
     public Result cacheRoleUrl(){
-        urlRoleCache.init();
+        authCache.init();
         return Result.success();
     }
 }

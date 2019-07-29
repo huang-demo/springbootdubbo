@@ -9,10 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Set;
 
 @Component
 @Slf4j
-public class UrlRoleCache {
+public class AuthCache{
     private static final String prefix = "auth.set";
     @Autowired
     private JedisClient jedisClient;
@@ -23,14 +24,18 @@ public class UrlRoleCache {
         List<UrlRoleBO> list = roleService.getRoleUrl();
         log.info("size:{}",list.size());
         for (UrlRoleBO bo : list) {
-            String key = getKey(bo.getUrl());
+            String key = getUrlKey(bo.getUrl());
             log.info("add cache {}:{}",key,bo.getRoleCode());
             log.info("res:{}",jedisClient.sAdd(key, bo.getRoleCode()));
         }
 
     }
 
-    private String getKey(String url){
+    private String getUrlKey(String url){
         return prefix+url.replaceAll("/",".");
+    }
+
+    public Set<String> getRoles(String url){
+        return jedisClient.sMembers(getUrlKey(url));
     }
 }

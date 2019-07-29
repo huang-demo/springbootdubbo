@@ -13,10 +13,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class FilterConfig {
     @Bean
-    public FilterRegistrationBean filterRegistrationBean(){
+    public FilterRegistrationBean logBackFilter(){
         FilterRegistrationBean bean = new FilterRegistrationBean();
         bean.setFilter(new LogbackFilter());
         bean.addUrlPatterns("/*");
+        bean.setOrder(1);
         return bean;
     }
 }

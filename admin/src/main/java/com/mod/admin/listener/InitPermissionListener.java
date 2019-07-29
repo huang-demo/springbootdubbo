@@ -1,6 +1,6 @@
 package com.mod.admin.listener;
 
-import com.mod.admin.cache.UrlRoleCache;
+import com.mod.admin.cache.AuthCache;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class InitPermissionListener implements ApplicationContextAware, Applicat
 
     private ApplicationContext ctx;
     @Autowired
-    private UrlRoleCache urlRoleCache;
+    private AuthCache authCache;
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.ctx = applicationContext;
@@ -30,6 +30,6 @@ public class InitPermissionListener implements ApplicationContextAware, Applicat
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         log.info("------初始化权限集合-----");
         //path:[role1,role2]
-        urlRoleCache.init();
+        authCache.init();
     }
 }

@@ -1,11 +1,11 @@
 package com.mod.admin.shrio;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.mod.admin.auth.JwtToken;
 import com.mod.common.constant.SysConstant;
 import com.mod.common.utils.JwtUtils;
 import com.mod.user.entity.dto.SysUserDTO;
 import com.mod.user.service.IUserInfoService;
+import org.apache.dubbo.config.annotation.Reference;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -16,6 +16,7 @@ public class MyRealm extends AuthorizingRealm {
 
     @Reference
     private IUserInfoService userInfoService;
+
     public MyRealm() {
         setAuthenticationTokenClass(JwtToken.class);
     }

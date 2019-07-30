@@ -4,7 +4,7 @@ import com.mod.admin.auth.JwtToken;
 import com.mod.common.constant.RedisPrefixConstant;
 import com.mod.common.constant.SysConstant;
 import com.mod.common.exception.GlobalException;
-import com.mod.common.redis.JedisClient;
+import com.mod.common.redis.RedisClient;
 import com.mod.common.utils.JwtUtils;
 import com.mod.common.utils.StringUtil;
 import org.apache.shiro.authz.UnauthorizedException;
@@ -25,7 +25,7 @@ public class JwtFilter extends BasicHttpAuthenticationFilter{
     private boolean isDev;
 
     @Autowired
-    private JedisClient jedisClient;
+    private RedisClient redisClient;
 
     /**
      * 执行登录认证
@@ -76,7 +76,7 @@ public class JwtFilter extends BasicHttpAuthenticationFilter{
         String userName = JwtUtils.getUserName(oldToken);
         String key = RedisPrefixConstant.USER_TOKEN + userName;
         //获取redis tokenStr
-        String redisUserInfo = jedisClient.get(key);
+        String redisUserInfo = redisClient.get(key,String.class);
         if(redisUserInfo != null){
             if(oldToken.equals(redisUserInfo)){
 

@@ -31,7 +31,6 @@ public class PermissionInterceptor implements HandlerInterceptor{
     @Override
     public boolean preHandle(HttpServletRequest request,HttpServletResponse response,Object handler) throws Exception{
 
-        log.info("校验当前用户是否拥有权限");
         //开发环境或者超级管理员不管直接放行
         if (isDev || SysConstant.SUPPER_ADMIN.equals(JwtUtils.getUserId(request.getHeader(SysConstant.TOKEN)))) {
             return true;

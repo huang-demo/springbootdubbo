@@ -33,4 +33,5 @@ public interface RoleDao extends BaseMapper<RolePO> {
      * @return
      */
     List<UrlRoleBO> getRoleUrl();
+
 }

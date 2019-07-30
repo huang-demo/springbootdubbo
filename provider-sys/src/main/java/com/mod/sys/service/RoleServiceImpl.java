@@ -44,4 +44,5 @@ public class RoleServiceImpl extends ServiceImpl<RoleDao,RolePO> implements IRol
     public List<UrlRoleBO> getRoleUrl() {
         return roleDao.getRoleUrl();
     }
+
 }

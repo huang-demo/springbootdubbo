@@ -12,3 +12,15 @@ dubbo:
   registry:
     address: zookeeper://192.168.131.102:2181
     file: ${user.home}/dubbo-cache/${spring.application.name}/dubbo.cache
+spring:
+  redis:
+    jedis:
+      pool:
+        max-active: 500
+        max-idle: 100
+    lettuce:
+      pool:
+        max-active: 500
+        max-idle: 100
+    timeout: 3000
+

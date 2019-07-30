@@ -13,6 +13,7 @@ import java.io.Serializable;
 public class RoleVO implements Serializable{
     private Long roleId;
     private String roleName;
+    private String roleCode;
     private Integer roleState;
     private String remark;
 }

@@ -37,7 +37,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(requestInterceptor)
                 .addPathPatterns("/**").order(1);
         registry.addInterceptor(permissionInterceptor)
-                .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html")
+                .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**","/error","/health", "/swagger-ui.html")
                 .addPathPatterns("/**")
                 .order(2);
     }

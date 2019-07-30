@@ -38,6 +38,24 @@ public class JwtUtils{
         }
     }
 
+    /**
+     *
+     * @param token
+     * @param secret
+     * @return
+     */
+    public static boolean verify(String token,String secret){
+        try{
+            Algorithm algorithm = Algorithm.HMAC256(secret);
+            JWTVerifier verifier = JWT.require(algorithm).build();
+            // 解析jwt
+            DecodedJWT jwt = verifier.verify(token);
+            return true;
+        }catch(Exception exception){
+            return false;
+        }
+    }
+
 
     /**
      * 2. 获得token中的信息无需secret解密也能获得

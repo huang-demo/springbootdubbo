@@ -1,6 +1,7 @@
 package com.mod.sys.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.mod.common.exception.GlobalException;
 import com.mod.sys.dao.RoleDao;
 import com.mod.sys.entity.bo.UrlRoleBO;
 import com.mod.sys.entity.dto.RolePageDTO;
@@ -36,8 +37,11 @@ public class RoleServiceImpl extends ServiceImpl<RoleDao,RolePO> implements IRol
     }
 
     @Override
-    public void cacheRolePermission() {
-        log.info("缓存url:role");
+    public List<RoleVO> getUserRole(Long userId) {
+        if(userId == null){
+            throw new GlobalException("用户id不能为空");
+        }
+        return roleDao.getUserRole(userId);
     }
 
     @Override

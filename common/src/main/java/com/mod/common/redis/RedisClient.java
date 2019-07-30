@@ -216,6 +216,21 @@ public interface RedisClient{
     <T> Set<T> sMembers(String key,Class<T> targetClass);
 
     /**
+     *
+     * @param keys
+     * @param <T>
+     * @return
+     */
+    <T> Set<T> sInter(String ... keys);
+
+    /**
+     *
+     * @param k1
+     * @param k2
+     * @return
+     */
+    Long sInterStore(String k1,String k2);
+    /**
      * 精确删除key
      *
      * @param key

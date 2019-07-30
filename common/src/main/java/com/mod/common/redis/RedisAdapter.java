@@ -114,6 +114,16 @@ public class RedisAdapter implements RedisClient{
     }
 
     @Override
+    public <T> Set<T> sInter(String... keys) {
+        return null;
+    }
+
+    @Override
+    public Long sInterStore(String k1,String k2) {
+        return null;
+    }
+
+    @Override
     public void delete(String key){
 
     }

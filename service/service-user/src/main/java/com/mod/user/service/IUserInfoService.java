@@ -54,4 +54,10 @@ public interface IUserInfoService extends IService<UserInfoPO> {
      * @return
      */
     SysUserDTO login(LoginUserDTO dto);
+
+    /**
+     * logout
+     * @param user
+     */
+    void logout(SysUserDTO user);
 }

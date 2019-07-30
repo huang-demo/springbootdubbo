@@ -18,4 +18,10 @@
         LEFT JOIN `sys_role` sr ON srp.`role_id`=sr.`role_id`
 
     </select>
+    <select id="getUserRole" resultType="com.mod.sys.entity.vo.RoleVO">
+        SELECT sr.`role_code` roleCode,sr.`role_name` roleName
+        FROM `sys_role` sr
+        INNER JOIN `sys_role_user` sru ON sr.`role_id`=sru.`role_id`
+        WHERE sr.`role_state`=1 AND sru.`is_deleted`=0 AND sru.`user_id`=#{userId}
+    </select>
 </mapper>

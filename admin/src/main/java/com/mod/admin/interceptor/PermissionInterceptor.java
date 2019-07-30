@@ -32,12 +32,17 @@ public class PermissionInterceptor implements HandlerInterceptor{
     public boolean preHandle(HttpServletRequest request,HttpServletResponse response,Object handler) throws Exception{
 
         //开发环境或者超级管理员不管直接放行
-        if (isDev || SysConstant.SUPPER_ADMIN.equals(JwtUtils.getUserId(request.getHeader(SysConstant.TOKEN)))) {
+        Long userId = JwtUtils.getUserId(request.getHeader(SysConstant.TOKEN));
+
+        if (isDev || SysConstant.SUPPER_ADMIN.equals(userId)) {
             return true;
         }
         String uri = request.getRequestURI();
         Set<String> roles = authCache.getRoles(uri);
-        log.info("uri:{},拥有权限的角色有:{}",uri,ListUtil.list2Str(roles));
+        log.info("uri:{},拥有权限的角色有:{}",uri, ListUtil.list2Str(roles));
+
+        //
+        authCache.checkPermission(uri,userId);
 
         return true;
     }

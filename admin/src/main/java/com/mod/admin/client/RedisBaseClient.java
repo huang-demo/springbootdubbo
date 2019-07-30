@@ -1,13 +1,11 @@
 package com.mod.admin.client;
 
-import com.mod.common.redis.RedisClient;
 import com.mod.common.redis.RedisAdapter;
+import com.mod.common.redis.RedisClient;
 import com.mod.common.utils.ProtoStuffUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.InvalidDataAccessApiUsageException;
-import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.RedisZSetCommands;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -392,6 +390,11 @@ public class RedisBaseClient extends RedisAdapter implements RedisClient{
         return value.stream().map(record -> ProtoStuffUtil.deserialize(record,targetClass)).collect(Collectors.toSet());
     }
 
+    @Override
+    public Long sInterStore(String k1,String k2) {
+        Long size = redisTemplate.execute((RedisCallback<Long>) connection -> connection.sInterStore(k1.getBytes(), k2.getBytes()));
+        return size;
+    }
 
     /**
      * 精确删除key

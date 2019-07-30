@@ -1,6 +1,6 @@
 package com.mod.admin.web.user;
 
-import com.mod.admin.auth.JwtToken;
+import com.mod.admin.cache.AuthCache;
 import com.mod.common.constant.SysConstant;
 import com.mod.common.core.Result;
 import com.mod.common.utils.JwtUtils;
@@ -10,7 +10,7 @@ import com.mod.user.entity.dto.SysUserDTO;
 import com.mod.user.service.IUserInfoService;
 import io.swagger.annotations.Api;
 import org.apache.dubbo.config.annotation.Reference;
-import org.apache.shiro.SecurityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,22 +25,26 @@ public class LoginContoller extends BaseController {
     @Reference
     private IUserInfoService userInfoService;
 
+    @Autowired
+    private AuthCache authCache;
+
     @PostMapping("/login")
-    public Result login(@RequestBody LoginUserDTO dto, HttpServletResponse response) {
+    public Result login(@RequestBody LoginUserDTO dto) {
         SysUserDTO user = userInfoService.login(dto);
+        //缓存用户
+        authCache.cacheUserRole(user.getUserId());
+
         String token = JwtUtils.sign(user.getUserId(), user.getUserName(), SysConstant.LOGIN_SECRET);
-        JwtToken jwtToken = new JwtToken(token);
-        response.setHeader(SysConstant.TOKEN, token);
-        SecurityUtils.getSubject().login(jwtToken);
         return success(token);
     }
 
     @GetMapping("/logout")
     public Result logout(HttpServletRequest req, HttpServletResponse res) {
         String jwtToken = req.getHeader(SysConstant.TOKEN);
-        SecurityUtils.getSubject().logout();
-//        userInfoService.logout(jwtToken);
-        res.setHeader(SysConstant.TOKEN, null);
+        SysUserDTO user = new SysUserDTO();
+        user.setUserId(JwtUtils.getUserId(jwtToken));
+        user.setUserName(JwtUtils.getUserName(jwtToken));
+        userInfoService.logout(user);
         return success();
     }
 }

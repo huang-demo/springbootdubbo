@@ -29,7 +29,7 @@ public interface IRoleService extends IService<RolePO> {
     /**
      * path:【role1,role2】
      */
-    void cacheRolePermission();
+    List<RoleVO> getUserRole(Long userId);
 
     /**
      * getRoleUrl

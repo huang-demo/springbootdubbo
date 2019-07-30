@@ -34,4 +34,10 @@ public interface RoleDao extends BaseMapper<RolePO> {
      */
     List<UrlRoleBO> getRoleUrl();
 
+    /**
+     * 获取用户角色
+     * @param userId
+     * @return
+     */
+    List<RoleVO> getUserRole(@Param("userId") Long userId);
 }

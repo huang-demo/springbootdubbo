@@ -2,6 +2,7 @@ package com.mod.common.entity.po;
 
 
 import lombok.Data;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,6 +15,7 @@ public class BasePO implements Serializable{
     private Date updateTime;
     private Long version;
 
+    @Getter
     public enum State{
         //
         ENABLE(1,"启用"),

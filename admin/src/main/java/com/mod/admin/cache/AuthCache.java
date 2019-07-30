@@ -30,7 +30,8 @@ public class AuthCache {
     }
 
     private String getUrlKey(String url) {
-        return RedisPrefixConstant.URI_ROLES + url.replaceAll("/", ":");
+        String sub = url.substring(1);
+        return RedisPrefixConstant.URI_ROLES + sub.replaceAll("/", ":");
     }
 
 

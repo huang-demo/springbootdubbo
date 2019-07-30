@@ -12,8 +12,9 @@
     <artifactId>entity</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>entity-sys</module>
         <module>entity-user</module>
+        <module>entity-order</module>
+        <module>entity-sys</module>
     </modules>
     <dependencies>
         <dependency>

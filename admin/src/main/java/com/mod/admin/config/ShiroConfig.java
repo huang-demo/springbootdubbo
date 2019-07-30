@@ -33,7 +33,8 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/error", "anon");
         filterChainDefinitionMap.put("/**.js", "anon");
         filterChainDefinitionMap.put("/druid/**", "anon");
-        filterChainDefinitionMap.put("/swagger**/**", "anon");
+        filterChainDefinitionMap.put("/swagger-ui.html", "anon");
+        filterChainDefinitionMap.put("/swagger-resources/**", "anon");
         filterChainDefinitionMap.put("/webjars/**", "anon");
         filterChainDefinitionMap.put("/v2/**", "anon");
         // 添加自己的过滤器并且取名为jwt
@@ -49,7 +50,11 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }
-    @Bean
+
+    /**
+     * 注意不要加@Bean注解，不然spring会自动注册成filter
+     * @return
+     */
     public JwtFilter getJwtFilter(){
         return new JwtFilter();
     }

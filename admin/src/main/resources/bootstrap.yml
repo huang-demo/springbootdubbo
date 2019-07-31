@@ -17,6 +17,13 @@ dubbo:
   protocol:
     name: dubbo
     port: 20890
-
+  registry:
+    address: zookeeper://192.168.131.102:2181
+    file: ${user.home}/dubbo-cache/${spring.application.name}/dubbo.cache
 apollo:
   meta: http://127.0.0.1:8080
+management:
+  endpoints:
+    web:
+      base-path: /
+

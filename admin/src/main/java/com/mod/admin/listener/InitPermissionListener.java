@@ -16,20 +16,25 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class InitPermissionListener implements ApplicationContextAware, ApplicationListener<ContextRefreshedEvent> {
+public class InitPermissionListener implements ApplicationContextAware, ApplicationListener<ContextRefreshedEvent>{
 
     private ApplicationContext ctx;
     @Autowired
     private AuthCache authCache;
+
     @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException{
         this.ctx = applicationContext;
     }
 
     @Override
-    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent){
         log.info("------初始化权限集合-----");
         //path:[role1,role2]
-        authCache.init();
+        try{
+            authCache.init();
+        }catch(Exception e){
+            log.error("初始化权限失败:{}",e.getMessage());
+        }
     }
 }

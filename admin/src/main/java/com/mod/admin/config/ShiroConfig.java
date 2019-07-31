@@ -3,18 +3,20 @@ package com.mod.admin.config;
 import com.mod.admin.filter.JwtFilter;
 import com.mod.admin.shrio.MyRealm;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
-import org.apache.shiro.mgt.DefaultSubjectDAO;
+import org.apache.shiro.authc.Authenticator;
+import org.apache.shiro.authc.pam.FirstSuccessfulStrategy;
+import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
+import org.apache.shiro.mgt.*;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.mgt.DefaultWebSessionStorageEvaluator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.Filter;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 @Configuration
 @Slf4j
@@ -29,6 +31,7 @@ public class ShiroConfig {
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         // 配置不会被拦截的链接 顺序判断
         filterChainDefinitionMap.put("/login", "anon");
+        filterChainDefinitionMap.put("/actuator/health", "anon");
         filterChainDefinitionMap.put("/health", "anon");
         filterChainDefinitionMap.put("/error", "anon");
         filterChainDefinitionMap.put("/**.js", "anon");
@@ -65,8 +68,13 @@ public class ShiroConfig {
         return myShiroRealm;
     }
 
-    @Bean("securityManager")
-    public SecurityManager securityManager() {
+    /**
+     * 在starter的org.apache.shiro.spring.config.web.autoconfigure类已经定义了securityManager
+     * 所以 securityManager 必须是SessionsSecurityManager或者SessionsSecurityManager的子类才不会去定义securityManager对象
+     * @return
+     */
+    @Bean
+    public SessionsSecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(myShiroRealm());
 
@@ -82,4 +90,7 @@ public class ShiroConfig {
 
         return securityManager;
     }
+
+
+
 }

@@ -3,6 +3,7 @@ package com.mod.admin.cache;
 import com.mod.admin.client.RedisBaseClient;
 import com.mod.common.constant.RedisPrefixConstant;
 import com.mod.common.exception.GlobalException;
+import com.mod.common.utils.StringUtil;
 import com.mod.sys.entity.bo.UrlRoleBO;
 import com.mod.sys.entity.vo.RoleVO;
 import com.mod.sys.service.IRoleService;
@@ -25,6 +26,9 @@ public class AuthCache {
     public void init() {
         List<UrlRoleBO> roleUrl = roleService.getRoleUrl();
         for (UrlRoleBO urlRoleBO : roleUrl) {
+            if(StringUtil.isEmpty(urlRoleBO.getUrl())){
+                continue;
+            }
             redisClient.sAdd(getUrlKey(urlRoleBO.getUrl()), urlRoleBO.getRoleCode());
         }
     }

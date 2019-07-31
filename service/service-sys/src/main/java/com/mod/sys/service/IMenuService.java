@@ -38,4 +38,10 @@ public interface IMenuService extends IService<MenuPO> {
      */
     List<MenuVO> queryMenu(MenuQueryDTO queryDTO);
 
+    /**
+     * 左侧菜单
+     * @param userId
+     * @return
+     */
+    List<MenuVO> getMenu(Long userId);
 }

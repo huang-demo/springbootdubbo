@@ -108,5 +108,23 @@ public class MenuServiceImpl extends ServiceImpl<MenuDao,MenuPO> implements IMen
         }
     }
 
+    @Override
+    public List<MenuVO> getMenu(Long userId){
+        List<MenuVO> list = menuDao.getMenuByPid(userId,0L);
+        for(MenuVO menuVO: list){
+            setChldernMenu(menuVO,userId);
+        }
+        return list;
+    }
 
+    private void setChldernMenu(MenuVO menu,Long userId){
+        if(menu == null){
+            return;
+        }
+        List<MenuVO> list = menuDao.getMenuByPid(userId,menu.getMenuId());
+        for(MenuVO cur: list){
+            setChldernMenu(cur,userId);
+        }
+        menu.setChildern(list);
+    }
 }

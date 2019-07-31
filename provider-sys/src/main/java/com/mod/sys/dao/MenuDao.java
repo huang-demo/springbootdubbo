@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.mod.sys.entity.dto.MenuQueryDTO;
 import com.mod.sys.entity.po.MenuPO;
 import com.mod.sys.entity.vo.MenuVO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -23,4 +24,12 @@ public interface MenuDao extends BaseMapper<MenuPO> {
      * @return
      */
     List<MenuVO> queryMenu(MenuQueryDTO queryDTO);
+
+    /**
+     *getMenuByPid
+     * @param userId
+     * @param pid
+     * @return
+     */
+    List<MenuVO> getMenuByPid(@Param("userId") Long userId,@Param("pid") Long pid);
 }

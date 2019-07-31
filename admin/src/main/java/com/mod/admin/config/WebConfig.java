@@ -10,6 +10,8 @@ package com.mod.admin.config;
 
 import com.mod.admin.interceptor.PermissionInterceptor;
 import com.mod.admin.interceptor.RequestInterceptor;
+import com.mod.admin.interceptor.SessionInterceptor;
+import com.mod.common.threadlocal.SessionContent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,6 +29,8 @@ public class WebConfig implements WebMvcConfigurer {
     private PermissionInterceptor permissionInterceptor;
     @Autowired
     private RequestInterceptor requestInterceptor;
+    @Autowired
+    private SessionInterceptor sessionInterceptor;
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/statics/**")
@@ -44,6 +48,13 @@ public class WebConfig implements WebMvcConfigurer {
                         "/swagger-ui.html")
                 .addPathPatterns("/**")
                 .order(2);
+        registry.addInterceptor(sessionInterceptor)
+                .excludePathPatterns("/swagger-resources/**",
+                        "/webjars/**", "/v2/**",
+                        "/error","/health","/login","/logout",
+                        "/swagger-ui.html")
+                .addPathPatterns("/**")
+                .order(10);
     }
 
 

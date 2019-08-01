@@ -1,8 +1,11 @@
 package com.mod.sys.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mod.sys.entity.dto.DictDTO;
+import com.mod.sys.entity.dto.DictQueryDTO;
 import com.mod.sys.entity.po.DictPO;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.mod.sys.entity.vo.DictVO;
 
 /**
  * <p>
@@ -20,4 +23,11 @@ public interface IDictService extends IService<DictPO> {
      * @return
      */
     Long insertOrUpdate(DictDTO dto);
+
+    /**
+     * queryPage
+     * @param dto
+     * @return
+     */
+    Page<DictVO> queryPage(DictQueryDTO dto);
 }

@@ -2,4 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mod.sys.dao.DictDao">
 
+    <select id="queryPage" resultType="com.mod.sys.entity.vo.DictVO">
+        SELECT sd.`dict_id` dictId,sd.`code` code ,sd.`dict_name` dictName,sd.`dict_value` dictValue,sd.`dict_state` dictState,sd.`parent_id` pid
+        FROM `sys_dict` sd
+        <where>
+            <if test="dto.pid!=null">AND sd.`parent_id` = #{dto.pid}</if>
+            <if test="dto.dictName!=null">AND sd.`dict_name` LIKE CONCAT('%',#{dto.dictName},'%')</if>
+        </where>
+    </select>
 </mapper>

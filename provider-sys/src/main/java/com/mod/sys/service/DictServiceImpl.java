@@ -1,12 +1,17 @@
 package com.mod.sys.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mod.sys.dao.DictDao;
 import com.mod.sys.entity.dto.DictDTO;
+import com.mod.sys.entity.dto.DictQueryDTO;
 import com.mod.sys.entity.po.DictPO;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.mod.sys.entity.vo.DictVO;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 /**
  * <p>
@@ -47,5 +52,13 @@ public class DictServiceImpl extends ServiceImpl<DictDao, DictPO> implements IDi
             dictDao.update(dictPO, new QueryWrapper<DictPO>().eq("dict_id", dto.getDictId()));
         }
         return dictId;
+    }
+
+    @Override
+    public Page<DictVO> queryPage(DictQueryDTO dto) {
+        Page<DictVO> page = new Page<>(dto.getPageIndex(), dto.getPageSize());
+        List<DictVO> list = dictDao.queryPage(page, dto);
+        page.setRecords(list);
+        return page;
     }
 }

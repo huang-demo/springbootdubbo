@@ -3,25 +3,27 @@ package com.mod.admin.config;
 import com.mod.admin.filter.JwtFilter;
 import com.mod.admin.shrio.MyRealm;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.authc.Authenticator;
-import org.apache.shiro.authc.pam.FirstSuccessfulStrategy;
-import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
-import org.apache.shiro.mgt.*;
+import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
+import org.apache.shiro.mgt.DefaultSubjectDAO;
 import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.realm.Realm;
+import org.apache.shiro.mgt.SessionsSecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.apache.shiro.web.mgt.DefaultWebSessionStorageEvaluator;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.Filter;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @Configuration
 @Slf4j
 public class ShiroConfig {
 
+    @Value("${admin.isDev:false}")
+    private boolean isDev;
 
     @Bean("shiroFilter")
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
@@ -59,7 +61,7 @@ public class ShiroConfig {
      * @return
      */
     public JwtFilter getJwtFilter(){
-        return new JwtFilter();
+        return new JwtFilter(isDev);
     }
 
     @Bean

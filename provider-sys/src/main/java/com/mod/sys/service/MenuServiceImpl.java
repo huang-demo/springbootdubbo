@@ -90,12 +90,12 @@ public class MenuServiceImpl extends ServiceImpl<MenuDao,MenuPO> implements IMen
         List<MenuVO> list = menuDao.queryMenu(queryDTO);
 
         if(SysConstant.YES.equals(queryDTO.getWithChildern())){
-            list.forEach(vo -> setChildern(vo));
+            list.forEach(vo -> setChildren(vo));
         }
         return list;
     }
 
-    private void setChildern(MenuVO menuVO){
+    private void setChildren(MenuVO menuVO){
         if(menuVO == null){
             return;
         }
@@ -104,7 +104,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuDao,MenuPO> implements IMen
         List<MenuVO> list = menuDao.queryMenu(query);
         menuVO.setChildern(list);
         for(MenuVO vo: list){
-            setChildern(vo);
+            setChildren(vo);
         }
     }
 
@@ -112,18 +112,18 @@ public class MenuServiceImpl extends ServiceImpl<MenuDao,MenuPO> implements IMen
     public List<MenuVO> getMenu(Long userId){
         List<MenuVO> list = menuDao.getMenuByPid(userId,0L);
         for(MenuVO menuVO: list){
-            setChldernMenu(menuVO,userId);
+            setChildrenMenu(menuVO,userId);
         }
         return list;
     }
 
-    private void setChldernMenu(MenuVO menu,Long userId){
+    private void setChildrenMenu(MenuVO menu,Long userId){
         if(menu == null){
             return;
         }
         List<MenuVO> list = menuDao.getMenuByPid(userId,menu.getMenuId());
         for(MenuVO cur: list){
-            setChldernMenu(cur,userId);
+            setChildrenMenu(cur,userId);
         }
         menu.setChildern(list);
     }

@@ -20,7 +20,8 @@ public class TraceServerFilter implements Filter {
     @Override
     public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
         String traceId = RpcContext.getContext().getAttachment(RpcConstant.TRACE_KEY);
-        if (StringUtil.hasLength(traceId)) {
+        boolean hasTrace = StringUtil.hasLength(traceId);
+        if (hasTrace) {
             MDC.put(RpcConstant.TRACE_KEY, traceId);
         }
         String token = RpcContext.getContext().getAttachment(RpcConstant.USER_TOKEN);
@@ -28,10 +29,17 @@ public class TraceServerFilter implements Filter {
         String className = invoker.getInterface().getName();
         String req = GsonUtils.obj2Json(invocation.getArguments());
         log.info("traceId- {},user:{}, method:{}.{}, request:{}", traceId, JwtUtils.getUserName(token),className , invocation.getMethodName(),req);
-        Result result = invoker.invoke(invocation);
-        Long takeTime = System.currentTimeMillis() - startTime;
-        log.info("traceId- {}, method:{}.{}, time:{} ms",traceId,className , invocation.getMethodName(), takeTime);
-        return result;
+        try{
+            Result result = invoker.invoke(invocation);
+            Long takeTime = System.currentTimeMillis() - startTime;
+            log.info("traceId- {}, method:{}.{}, time:{} ms",traceId,className , invocation.getMethodName(), takeTime);
+            return result;
+        }finally{
+            if(hasTrace){
+                MDC.remove(RpcConstant.TRACE_KEY);
+            }
+        }
+
     }
 
 }

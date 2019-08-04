@@ -1,6 +1,7 @@
 package com.mod.admin.config;
 
 import com.mod.admin.filter.LogbackFilter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,11 +12,18 @@ import org.springframework.context.annotation.Configuration;
  * @Date create in 2019/7/23 16:23
  */
 @Configuration
+@Slf4j
 public class FilterConfig {
+
     @Bean
-    public FilterRegistrationBean logBackFilter(){
+    public LogbackFilter logbackFilter(){
+        log.info(".........init logbackFilter.......");
+        return new LogbackFilter();
+    }
+    @Bean
+    public FilterRegistrationBean filterRegistrationBean(){
         FilterRegistrationBean bean = new FilterRegistrationBean();
-        bean.setFilter(new LogbackFilter());
+        bean.setFilter(logbackFilter());
         bean.addUrlPatterns("/*");
         bean.setOrder(1);
         return bean;

@@ -15,8 +15,13 @@ public class FilterConfig{
     @Bean
     public FilterRegistrationBean filterRegistrationBean(){
         FilterRegistrationBean bean = new FilterRegistrationBean();
-        bean.setFilter(new LogbackFilter());
+        bean.setFilter(getLocBackFilter());
         bean.addUrlPatterns("/*");
         return bean;
+    }
+
+    @Bean
+    public LogbackFilter getLocBackFilter(){
+        return new LogbackFilter();
     }
 }

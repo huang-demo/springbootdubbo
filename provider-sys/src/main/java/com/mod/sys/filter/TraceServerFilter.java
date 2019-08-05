@@ -23,6 +23,8 @@ public class TraceServerFilter implements Filter {
         boolean hasTrace = StringUtil.hasLength(traceId);
         if (hasTrace) {
             MDC.put(RpcConstant.TRACE_KEY, traceId);
+        }else{
+            traceId = "";
         }
         String token = RpcContext.getContext().getAttachment(RpcConstant.USER_TOKEN);
         Long startTime = System.currentTimeMillis();
@@ -35,6 +37,7 @@ public class TraceServerFilter implements Filter {
             log.info("traceId- {}, method:{}.{}, time:{} ms",traceId,className , invocation.getMethodName(), takeTime);
             return result;
         }finally{
+            RpcContext.getContext().clearAttachments();
             if(hasTrace){
                 MDC.remove(RpcConstant.TRACE_KEY);
             }

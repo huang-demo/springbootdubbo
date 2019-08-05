@@ -1,10 +1,10 @@
 package com.mod.miniapp.filter;
 
 
-import com.alibaba.dubbo.common.Constants;
 import com.mod.common.utils.GsonUtils;
-import io.micrometer.core.instrument.util.StringUtils;
+import com.mod.common.utils.StringUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.common.constants.CommonConstants;
 import org.apache.dubbo.common.extension.Activate;
 import org.apache.dubbo.rpc.*;
 import org.slf4j.MDC;
@@ -14,20 +14,24 @@ import org.slf4j.MDC;
  * @Author Mr.p Email:huangdemo@shein.com
  * @Date create in 2019/7/23 17:26
  */
-@Activate(group = Constants.CONSUMER)
+@Activate(group = CommonConstants.CONSUMER)
 @Slf4j
 public class ApiClientFilter implements Filter {
 
     @Override
     public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
         String traceId = MDC.get("traceId");
-        if (StringUtils.isNotBlank(traceId)) {
+        if (StringUtil.hasLength(traceId)) {
             RpcContext.getContext().setAttachment("traceId", traceId);
         }
         String className = invoker.getInterface().getName();
         String req = GsonUtils.obj2Json(invocation.getArguments());
         log.info("traceId- {} method:{}.{},request:{}", traceId,className , invocation.getMethodName(),req);
-        return invoker.invoke(invocation);
+        try{
+            return invoker.invoke(invocation);
+        }finally{
+            RpcContext.getContext().clearAttachments();
+        }
     }
 
 }

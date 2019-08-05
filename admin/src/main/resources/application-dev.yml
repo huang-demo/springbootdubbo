@@ -20,3 +20,5 @@ dubbo:
   registry:
     address: zookeeper://192.168.131.102:2181
 #    file: ${user.home}/dubbo-cache/${spring.application.name}/dubbo.cache
+admin:
+  isDev: true

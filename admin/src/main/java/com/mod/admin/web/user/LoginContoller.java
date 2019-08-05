@@ -1,6 +1,6 @@
 package com.mod.admin.web.user;
 
-import com.alibaba.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.annotation.Reference;
 import com.mod.admin.auth.JwtToken;
 import com.mod.common.constant.SysConstant;
 import com.mod.common.core.Result;

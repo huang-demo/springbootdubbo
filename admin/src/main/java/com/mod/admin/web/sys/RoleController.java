@@ -1,7 +1,6 @@
 package com.mod.admin.web.sys;
 
-
-import com.alibaba.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.annotation.Reference;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mod.common.core.Result;
 import com.mod.sys.entity.dto.RoleDTO;

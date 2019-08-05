@@ -11,7 +11,7 @@ admin:
 dubbo:
   consumer:
     check: false
-    filter: apiClientFilter
+    filter: consumerFilter
   application:
     name: admin
   protocol:

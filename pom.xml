@@ -46,8 +46,10 @@
         <validation.version>2.0.1.Final</validation.version>
         <mybatis-spring.version>2.1.0</mybatis-spring.version>
         <apollo.version>1.1.0</apollo.version>
+        <slf4j.version>1.7.26</slf4j.version>
         <protostuff.version>1.1.3</protostuff.version>
         <kaptcha.version>0.0.9</kaptcha.version>
+        <logback.version>1.2.3</logback.version>
         <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
@@ -194,11 +196,30 @@
                 <artifactId>apollo-client</artifactId>
                 <version>${apollo.version}</version>
             </dependency>
+            <!-- slf4j -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+
+            <!-- logback -->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
-                <version>1.2.3</version>
-                <scope>compile</scope>
+                <version>${logback.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-access</artifactId>
+                <version>${logback.version}</version>
             </dependency>
             <!-- for refresh scope demo -->
             <dependency>

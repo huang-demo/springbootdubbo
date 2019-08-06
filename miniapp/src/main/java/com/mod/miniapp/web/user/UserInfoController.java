@@ -1,9 +1,7 @@
 package com.mod.miniapp.web.user;
 
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.mod.common.annotation.UserLoginToken;
 import com.mod.common.core.Result;
 import com.mod.common.web.BaseController;
 import com.mod.user.entity.dto.UserInfoPageDTO;
@@ -11,6 +9,7 @@ import com.mod.user.entity.vo.UserInfoVO;
 import com.mod.user.service.IUserInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

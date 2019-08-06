@@ -16,22 +16,32 @@ import org.slf4j.MDC;
  */
 @Activate(group = "provider-user")
 @Slf4j
-public class TraceServerFilter implements Filter {
+public class TraceServerFilter implements Filter{
     @Override
-    public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
+    public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException{
         String traceId = RpcContext.getContext().getAttachment(RpcConstant.TRACE_KEY);
         String token = RpcContext.getContext().getAttachment(RpcConstant.USER_TOKEN);
-        if (StringUtil.hasLength(traceId)) {
+        boolean hasTrace = StringUtil.hasLength(traceId);
+        if(hasTrace){
             MDC.put("traceId", traceId);
+        }else{
+            traceId = "";
         }
         Long startTime = System.currentTimeMillis();
         String className = invoker.getInterface().getName();
         String param = GsonUtils.obj2Json(invocation.getArguments());
-        log.info("traceId- {},user:{}, method:{}.{}, request:{}", traceId, JwtUtils.getUserName(token),className , invocation.getMethodName(),param);
-        Result result = invoker.invoke(invocation);
-        Long takeTime = System.currentTimeMillis() - startTime;
-        log.info("traceId- {}, method:{}.{}, response:{}, time:{} ms",traceId,className , takeTime);
-        return result;
+        log.info("traceId- {},user:{}, method:{}.{}, request:{}", traceId, JwtUtils.getUserName(token), className, invocation.getMethodName(), param);
+        try{
+            Result result = invoker.invoke(invocation);
+            Long takeTime = System.currentTimeMillis() - startTime;
+            log.info("traceId- {}, method:{}.{}, response:{}, time:{} ms", traceId, className, takeTime);
+            return result;
+        }finally{
+            RpcContext.getContext().clearAttachments();
+            if(hasTrace){
+                MDC.remove(RpcConstant.TRACE_KEY);
+            }
+        }
     }
 
 }

@@ -1,7 +1,6 @@
 package com.mod.admin.rabbitmq.test.provider;
 
 import com.mod.common.constant.RabbitMqConstant;
-import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

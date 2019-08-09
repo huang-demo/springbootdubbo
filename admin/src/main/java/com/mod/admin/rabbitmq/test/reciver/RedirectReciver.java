@@ -1,14 +1,10 @@
 package com.mod.admin.rabbitmq.test.reciver;
 
 import com.mod.common.constant.RabbitMqConstant;
-import com.mod.common.utils.GsonUtils;
-import com.mod.common.utils.StringUtil;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
-import org.springframework.amqp.core.MessageProperties;
-import org.springframework.amqp.rabbit.annotation.*;
-import org.springframework.amqp.support.AmqpHeaders;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -20,7 +16,8 @@ import java.io.IOException;
  */
 @Component
 @Slf4j
-public class TestReciver{
+public class RedirectReciver{
+
 
     /**
      * 监听替补队列 来验证死信.
@@ -32,6 +29,6 @@ public class TestReciver{
     @RabbitListener(queues = {RabbitMqConstant.REDIRECT_QUEUE})
     public void redirect(Message message, Channel channel) throws IOException {
         channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
-        log.debug("dead message  30s 后 消费消息 {}",new String (message.getBody()));
+        log.debug("dead message  10s 后 消费消息 {}",new String (message.getBody()));
     }
 }

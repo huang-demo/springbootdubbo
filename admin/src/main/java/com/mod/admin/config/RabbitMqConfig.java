@@ -2,6 +2,8 @@ package com.mod.admin.config;
 
 import com.mod.common.constant.RabbitMqConstant;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
@@ -20,6 +22,7 @@ import org.springframework.retry.RetryCallback;
 import org.springframework.retry.RetryContext;
 import org.springframework.retry.support.RetryTemplate;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,16 +59,16 @@ public class RabbitMqConfig{
 
         return connectionFactory;
     }
-//
-//    @Bean(name = "rabbitListenerContainerFactory")
-//    public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory(SimpleRabbitListenerContainerFactoryConfigurer configurer,@Qualifier("connectionFactory") ConnectionFactory connectionFactory){
-//        SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
-//        factory.setAcknowledgeMode(AcknowledgeMode.MANUAL);
-//        RetryTemplate retryTemplate = new RetryTemplate();
-//        factory.setRetryTemplate(retryTemplate);
-//        configurer.configure(factory,connectionFactory);
-//        return factory;
-//    }
+
+    @Bean(name = "rabbitListenerContainerFactory")
+    public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory(SimpleRabbitListenerContainerFactoryConfigurer configurer,@Qualifier("connectionFactory") ConnectionFactory connectionFactory){
+        SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
+        factory.setAcknowledgeMode(AcknowledgeMode.MANUAL);
+        RetryTemplate retryTemplate = new RetryTemplate();
+        factory.setRetryTemplate(retryTemplate);
+        configurer.configure(factory,connectionFactory);
+        return factory;
+    }
 
     @Bean
     public RabbitTemplate rabbitTemplate(@Qualifier("connectionFactory") ConnectionFactory connectionFactory){
@@ -82,6 +85,7 @@ public class RabbitMqConfig{
         return rabbitTemplate;
     }
 
+    /*----------------------------------------------------------------------------deadletter queue------------------------------------------------------------------------------*/
 
     /**
      * 死信队列跟交换机类型没有关系 不一定为directExchange  不影响该类型交换机的特性.
@@ -89,7 +93,7 @@ public class RabbitMqConfig{
      * @return the exchange
      */
     @Bean("deadLetterExchange")
-    public Exchange deadLetterExchange(){
+    public Exchange deadLetterExchange() {
         return ExchangeBuilder.directExchange(RabbitMqConstant.DL_EXCHANGE).durable(true).build();
     }
 
@@ -101,12 +105,12 @@ public class RabbitMqConfig{
      * @return the queue
      */
     @Bean("deadLetterQueue")
-    public Queue deadLetterQueue(){
-        Map<String,Object> args = new HashMap<>(2);
-        //声明  死信交换机
-        args.put("x-dead-letter-exchange",RabbitMqConstant.DL_EXCHANGE);
-        //声明 死信路由键
-        args.put("x-dead-letter-routing-key",RabbitMqConstant.DL_KEY);
+    public Queue deadLetterQueue() {
+        Map<String, Object> args = new HashMap<>(2);
+        //x-dead-letter-exchange    声明  死信交换机
+        args.put("x-dead-letter-exchange", RabbitMqConstant.DL_EXCHANGE);
+        //x-dead-letter-routing-key    声明 死信路由键
+        args.put("x-dead-letter-routing-key", RabbitMqConstant.KEY_R);
         return QueueBuilder.durable(RabbitMqConstant.DL_QUEUE).withArguments(args).build();
     }
 
@@ -138,6 +142,6 @@ public class RabbitMqConfig{
      */
     @Bean
     public Binding redirectBinding() {
-        return new Binding(RabbitMqConstant.REDIRECT_QUEUE, Binding.DestinationType.QUEUE, RabbitMqConstant.DL_EXCHANGE, RabbitMqConstant.KEY_R, null);
+        return new Binding(RabbitMqConstant.REDIRECT_QUEUE, Binding.DestinationType.QUEUE, RabbitMqConstant.DL_EXCHANGE,RabbitMqConstant.KEY_R , null);
     }
 }

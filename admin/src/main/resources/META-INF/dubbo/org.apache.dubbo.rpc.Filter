@@ -1,1 +1,1 @@
-apiClientFilter=com.mod.admin.filter.ApiClientFilter
+apiClientFilter=com.mod.common.dubbo.ApiClientFilter

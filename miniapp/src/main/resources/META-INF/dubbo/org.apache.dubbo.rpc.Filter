@@ -1,1 +1,1 @@
-apiClientFilter=com.mod.miniapp.filter.ApiClientFilter
+apiClientFilter=com.mod.common.dubbo.ApiClientFilter

@@ -1,1 +1,1 @@
-traceServerFilter=com.mod.sys.filter.TraceServerFilter
+traceServerFilter=com.mod.common.dubbo.TraceServerFilter

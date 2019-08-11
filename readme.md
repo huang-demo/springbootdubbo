@@ -17,14 +17,14 @@
 #后端技术实现
 - springboot 
 - dubbo 服务治理
-- zookeeper
+- zookeeper 配置中心
 - mysql
 - mybatis-plus
-- redis 缓存
+- redis
 - rabbitmq
 - swagger api
 - jwt
-```待整合```
-- nacos 配置中心
-- sentinel 限流保护
+- apollo 配置中心
 - elk 日志追踪
+```待实现```
+- sentinel 限流保护

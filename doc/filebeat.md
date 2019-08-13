@@ -1,3 +1,18 @@
+#定义一个pipeline管道
+PUT _ingest/pipeline/springboot
+{
+	"description" : "springboot pipeline",
+    "processors" : [
+        {
+            "grok": {
+              "field": "message",
+              "patterns": ["(?<date>.*) \\[(?<thread>[A-Za-z0-9/-]{4,70})\\] \\[(?<traceId>[A-Za-z0-9/-]{32,36})\\] (?<level>[A-Z]{4,5})  (?<class>[A-Za-z0-9/.]{4,40})\\s+(?<msg>[\\s\\S]*)"]
+            }
+        }
+    ]
+}
+
+#filebeat 配置文件
 filebeat.prospectors:
 
   # Each - is a prospector. Most options can be set at the prospector level, so

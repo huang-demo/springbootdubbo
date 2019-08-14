@@ -16,4 +16,9 @@ public class RabbitMqConstant{
     public static final String DL_QUEUE = "ADMIN.DL.QUEUE";
 
     public static final String REDIRECT_QUEUE = "ADMIN.REDIRECT.QUEUE";
+
+    public static final String TOPIC_EXCHANGE = "ADMIN.TOPIC.Exchange";
+    public static final String TOPIC_QUEUE = "ADMIN.TOPIC.Queue";
+    public static final String TOPIC_KEY_PREFIX = "ADMIN.TOPIC.";
+
 }

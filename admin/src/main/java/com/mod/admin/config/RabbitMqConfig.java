@@ -93,7 +93,7 @@ public class RabbitMqConfig{
      * @return the exchange
      */
     @Bean("deadLetterExchange")
-    public Exchange deadLetterExchange() {
+    public Exchange deadLetterExchange(){
         return ExchangeBuilder.directExchange(RabbitMqConstant.DL_EXCHANGE).durable(true).build();
     }
 
@@ -105,12 +105,12 @@ public class RabbitMqConfig{
      * @return the queue
      */
     @Bean("deadLetterQueue")
-    public Queue deadLetterQueue() {
-        Map<String, Object> args = new HashMap<>(2);
+    public Queue deadLetterQueue(){
+        Map<String,Object> args = new HashMap<>(2);
         //x-dead-letter-exchange    声明  死信交换机
-        args.put("x-dead-letter-exchange", RabbitMqConstant.DL_EXCHANGE);
+        args.put("x-dead-letter-exchange",RabbitMqConstant.DL_EXCHANGE);
         //x-dead-letter-routing-key    声明 死信路由键
-        args.put("x-dead-letter-routing-key", RabbitMqConstant.KEY_R);
+        args.put("x-dead-letter-routing-key",RabbitMqConstant.KEY_R);
         return QueueBuilder.durable(RabbitMqConstant.DL_QUEUE).withArguments(args).build();
     }
 
@@ -120,7 +120,7 @@ public class RabbitMqConfig{
      * @return the queue
      */
     @Bean("redirectQueue")
-    public Queue redirectQueue() {
+    public Queue redirectQueue(){
         return QueueBuilder.durable(RabbitMqConstant.REDIRECT_QUEUE).build();
     }
 
@@ -130,8 +130,8 @@ public class RabbitMqConfig{
      * @return the binding
      */
     @Bean
-    public Binding deadLetterBinding() {
-        return new Binding(RabbitMqConstant.DL_QUEUE, Binding.DestinationType.QUEUE, RabbitMqConstant.DL_EXCHANGE, RabbitMqConstant.DL_KEY, null);
+    public Binding deadLetterBinding(){
+        return new Binding(RabbitMqConstant.DL_QUEUE,Binding.DestinationType.QUEUE,RabbitMqConstant.DL_EXCHANGE,RabbitMqConstant.DL_KEY,null);
 
     }
 
@@ -141,7 +141,25 @@ public class RabbitMqConfig{
      * @return the binding
      */
     @Bean
-    public Binding redirectBinding() {
-        return new Binding(RabbitMqConstant.REDIRECT_QUEUE, Binding.DestinationType.QUEUE, RabbitMqConstant.DL_EXCHANGE,RabbitMqConstant.KEY_R , null);
+    public Binding redirectBinding(){
+        return new Binding(RabbitMqConstant.REDIRECT_QUEUE,Binding.DestinationType.QUEUE,RabbitMqConstant.DL_EXCHANGE,RabbitMqConstant.KEY_R,null);
+    }
+
+
+    @Bean
+    public Exchange topicExchange(){
+        Exchange delayed = ExchangeBuilder.topicExchange(RabbitMqConstant.TOPIC_EXCHANGE)
+               .durable(true).build();
+        return delayed;
+    }
+
+    @Bean
+    public Queue topicQueue(){
+        return new Queue(RabbitMqConstant.TOPIC_QUEUE,true);
+    }
+
+    @Bean
+    public Binding topicBinding(){
+        return new Binding(RabbitMqConstant.TOPIC_QUEUE,Binding.DestinationType.QUEUE,RabbitMqConstant.TOPIC_EXCHANGE,RabbitMqConstant.TOPIC_KEY_PREFIX + "#",null);
     }
 }

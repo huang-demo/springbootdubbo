@@ -1,6 +1,7 @@
 package com.mod.admin.web.msg;
 
 import com.mod.admin.rabbitmq.test.provider.DeadLetterProvider;
+import com.mod.admin.rabbitmq.test.provider.TopicProvider;
 import com.mod.common.core.Result;
 import com.mod.common.web.BaseController;
 import io.swagger.annotations.Api;
@@ -21,9 +22,17 @@ public class TestMsgController extends BaseController{
     @Autowired
     private DeadLetterProvider deadLetterProvider;
 
+    @Autowired
+    private TopicProvider lazyProvider;
+
     @PostMapping("/sendDeadLetterMsg")
     public Result sendDeadLetterMsg(String msg){
         deadLetterProvider.send(msg);
+        return success();
+    }
+    @PostMapping("/sendLazyMsg")
+    public Result sendLazyMsg(String msg){
+        lazyProvider.send(msg);
         return success();
     }
 }

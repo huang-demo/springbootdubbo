@@ -18,9 +18,9 @@ import java.io.IOException;
 @Slf4j
 public class DeadletterReciver{
 
-    @RabbitListener(queues = {RabbitMqConstant.DL_QUEUE})
-    public void deadLetter(Message message,Channel channel) throws IOException{
-        log.debug("dead message 收到消息 {}",new String (message.getBody()));
-        channel.basicReject(message.getMessageProperties().getDeliveryTag(), false);
-    }
+//    @RabbitListener(queues = {RabbitMqConstant.DL_QUEUE})
+//    public void deadLetter(Message message,Channel channel) throws IOException{
+//        log.debug("dead message 收到消息 {}",new String (message.getBody()));
+//        channel.basicReject(message.getMessageProperties().getDeliveryTag(), false);
+//    }
 }

@@ -1,0 +1,35 @@
+#配置文件
+
+input{
+  beats{
+    host=>"127.0.0.1"port=>5400
+  }
+}
+filter{
+  grok{
+    match=>{
+      "message"=>"(?<date>.*) \[(?<thread>[A-Za-z0-9/-]{4,70})\] \[(?<traceId>[A-Za-z0-9/-]{0,36})\] (?<level>[A-Z]{4,5})  (?<class>[A-Za-z0-9/.]{4,40})\s+(?<msg>[\\s\\S]*)"
+    }
+  }
+  mutate{
+    split=>["message","|"]#按|进行split切割message
+    add_field``{
+      "create"=>"%{[message][0]}"
+    }add_field=>{
+      "thread"=>"%{[message][1]}"
+    }add_field=>{
+      "traceId"=>"%{[message][2]}"
+    }add_field=>{
+      "level"=>"%{[message][3]}"
+    }
+  }
+}
+output{
+  elasticsearch{
+    hosts=>[
+      "127.0.0.1:9200"
+    ]index=>"dubbo-%{+YYYY.MM.dd}"#自定义的名字
+  }stdout{
+    codec=>rubydebug
+  }
+}

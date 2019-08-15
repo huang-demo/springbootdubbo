@@ -34,6 +34,8 @@
     </appender>
 
 
+    <!--日志格式-->
+    <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS}|%thread|%X{traceId:--}|%-5level|%logger{50} %msg%n" />
     <!--输出到文件-->
 
     <!-- 时间滚动输出 level为 DEBUG 日志 -->
@@ -43,7 +45,7 @@
         <!--日志文件输出格式-->
         <encoder>
             <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 %clr 彩色输出-->
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%X{traceId:-}] %-5level %logger{50} %msg%n</pattern>
+            <pattern>${log.pattern}</pattern>
             <charset>UTF-8</charset> <!-- 设置字符集 -->
         </encoder>
         <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
@@ -71,7 +73,7 @@
         <!--日志文件输出格式-->
         <encoder>
             <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 %clr 彩色输出-->
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%X{traceId:-}] %-5level %logger{50} %msg%n</pattern>
+            <pattern>${log.pattern}</pattern>
             <charset>UTF-8</charset> <!-- 设置字符集 -->
         </encoder>
         <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
@@ -99,7 +101,7 @@
         <!--日志文件输出格式-->
         <encoder>
             <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 %clr 彩色输出-->
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%X{traceId:-}] %-5level %logger{50} %msg%n</pattern>
+            <pattern>${log.pattern}</pattern>
             <charset>UTF-8</charset> <!-- 设置字符集 -->
         </encoder>
         <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
@@ -127,7 +129,7 @@
         <!--日志文件输出格式-->
         <encoder>
             <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 %clr 彩色输出-->
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%X{traceId:-}] %-5level %logger{50} %msg%n</pattern>
+            <pattern>${log.pattern}</pattern>
             <charset>UTF-8</charset> <!-- 设置字符集 -->
         </encoder>
         <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
@@ -146,7 +148,6 @@
             <onMismatch>DENY</onMismatch>
         </filter>
     </appender>
-
     <!--
         <logger>用来设置某一个包或者具体的某一个类的日志打印级别、
         以及指定<appender>。<logger>仅有一个name属性，

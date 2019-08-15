@@ -2,7 +2,8 @@
 
 input{
   beats{
-    host=>"127.0.0.1"port=>5400
+    host=>"127.0.0.1"
+    port=>5400
   }
 }
 filter{
@@ -13,7 +14,7 @@ filter{
   }
   mutate{
     split=>["message","|"]#按|进行split切割message
-    add_field``{
+    add_field=>{
       "create"=>"%{[message][0]}"
     }add_field=>{
       "thread"=>"%{[message][1]}"

@@ -35,8 +35,7 @@
 
 
     <!--日志格式-->
-    <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS}|%thread|%X{traceId:--}|%-5level|%logger{50} %msg%n" />
-    <!--输出到文件-->
+    <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %thread %X{traceId:--} %-5level %logger{50} %msg%n" />
 
     <!-- 时间滚动输出 level为 DEBUG 日志 -->
     <appender name="DEBUG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">

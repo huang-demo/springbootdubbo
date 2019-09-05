@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mod.common.constant.ExceptionCode;
 import com.mod.common.entity.vo.TokenVO;
 import com.mod.common.exception.GlobalException;
+import com.mod.common.exception.ValidateParamException;
 import com.mod.common.utils.JwtUtils;
 import com.mod.common.utils.MD5Util;
 import com.mod.user.dao.UserInfoDao;
@@ -66,7 +67,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfoPO> im
     public SysUserDTO findByUserName(String userName) {
         SysUserDTO user = userInfoDao.findByUserName(userName);
         if (user == null) {
-            throw new GlobalException(ExceptionCode.USER_NOT_EXIST);
+            throw new ValidateParamException(ExceptionCode.USER_NOT_EXIST);
         }
         return user;
     }
@@ -80,7 +81,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfoPO> im
         //登录日志
         saveLoginLog(user, LoginLogPO.LoginType.LOGIN.getCode(), state);
         if (!pass) {
-            throw new GlobalException("密码错误！");
+            throw new ValidateParamException("密码错误！");
         }
         return user;
     }

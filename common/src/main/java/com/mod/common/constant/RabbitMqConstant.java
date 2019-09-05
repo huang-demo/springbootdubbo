@@ -17,8 +17,12 @@ public class RabbitMqConstant{
 
     public static final String REDIRECT_QUEUE = "ADMIN.REDIRECT.QUEUE";
 
-    public static final String TOPIC_EXCHANGE = "ADMIN.TOPIC.Exchange";
-    public static final String TOPIC_QUEUE = "ADMIN.TOPIC.Queue";
+    public static final String SYSLOG_QUEUE = "MESSAGE.SYSLOG.QUEUE";
+
+    public static final String SYSLOG_EXCHANGE = "MESSAGE.SYSLOG.EXCHANGE";
+
+    public static final String TOPIC_EXCHANGE = "ADMIN.TOPIC.EXCHANGE";
+    public static final String TOPIC_QUEUE = "ADMIN.TOPIC.QUEUE";
     public static final String TOPIC_KEY_PREFIX = "ADMIN.TOPIC.";
 
 }

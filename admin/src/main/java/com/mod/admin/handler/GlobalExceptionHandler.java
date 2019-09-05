@@ -2,6 +2,7 @@ package com.mod.admin.handler;
 
 import com.mod.common.core.Result;
 import com.mod.common.exception.GlobalException;
+import com.mod.common.exception.ValidateParamException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -21,6 +22,11 @@ public class GlobalExceptionHandler {
         return Result.error(e.getMessage());
     }
 
+    @ExceptionHandler(Exception.class)
+    public Result handleValidateException(ValidateParamException e) {
+        log.warn("参数校验:{}",e.getMessage());
+        return Result.error(e.getMsg());
+    }
     @ExceptionHandler(Exception.class)
     public Result handleException(Exception e) {
         log.error("全局错误拦截:{}",e.getMessage());

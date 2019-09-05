@@ -46,7 +46,7 @@ filebeat.inputs:
   paths:
     - F:\logs\springdubbo\sys\*.log
   tail_files: true
-  tags: sys
+  tags: mapper.message
   fields:
     log_topic: dubbo
   #json.keys_under_root: true

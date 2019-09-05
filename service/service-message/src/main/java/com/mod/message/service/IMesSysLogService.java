@@ -1,6 +1,7 @@
 package com.mod.message.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.mod.message.entity.dto.MesSysLogDTO;
 import com.mod.message.entity.po.MesSysLogPO;
 
 /**
@@ -13,4 +14,9 @@ import com.mod.message.entity.po.MesSysLogPO;
  */
 public interface IMesSysLogService extends IService<MesSysLogPO>{
 
+    /**
+     * 保存错误日志
+     * @param dto
+     */
+    void saveErrLog(MesSysLogDTO dto);
 }

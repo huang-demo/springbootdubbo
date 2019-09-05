@@ -19,6 +19,7 @@
         <module>provider-sys</module>
         <module>provider-user</module>
         <module>provider-finance</module>
+        <module>provider-message</module>
         <module>entity</module>
     </modules>
     <properties>

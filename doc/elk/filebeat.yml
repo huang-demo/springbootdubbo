@@ -12,80 +12,81 @@
 
 #=========================== Filebeat inputs =============================
 
-filebeat.inputs:
-
 # Each - is an input. Most options can be set at the input level, so
 # you can use different inputs for various configurations.
 # Below are the input specific configurations.
 
 filebeat.inputs:
 
-# Each - is an input. Most options can be set at the input level, so
-# you can use different inputs for various configurations.
-# Below are the input specific configurations.
-- type: log
-  paths:
-    - F:\logs\springdubbo\admin\*.log
-  tail_files: true
-  tags: admin
-  fields:
-    log_topic: dubbo
-  #json.keys_under_root: true
-  #json.overwrite_keys: true
+  # Each - is an input. Most options can be set at the input level, so
+  # you can use different inputs for various configurations.
+  # Below are the input specific configurations.
+  - type: log
+    paths:
+      - F:\logs\springdubbo\admin\*.log
+    tail_files: true
+    tags: admin
+    fields:
+      index: dubbo
+      module: admin
+    #json.keys_under_root: true
+    #json.overwrite_keys: true
 
-- type: log
-  paths:
-    - F:\logs\springdubbo\user\*.log
-  tail_files: true
-  tags: user
-  fields:
-    log_topic: dubbo
-  #json.keys_under_root: true
-  #json.overwrite_keys: true
-- type: log
-  paths:
-    - F:\logs\springdubbo\sys\*.log
-  tail_files: true
-  tags: mapper.message
-  fields:
-    log_topic: dubbo
-  #json.keys_under_root: true
-  #json.overwrite_keys: true
-    #- c:\programdata\elasticsearch\logs\*
+  - type: log
+    paths:
+      - F:\logs\springdubbo\user\*.log
+    tail_files: true
+    tags: user
+    fields:
+      indx: dubbo
+      module: user
+    #json.keys_under_root: true
+    #json.overwrite_keys: true
+  - type: log
+    paths:
+      - F:\logs\springdubbo\sys\*.log
+    tail_files: true
+    tags: sys
+    fields:
+      index: dubbo
+      module: sys
+      #json.keys_under_root: true
+      #json.overwrite_keys: true
+      #- c:\programdata\elasticsearch\logs\*
 
-  # Exclude lines. A list of regular expressions to match. It drops the lines that are
-  # matching any regular expression from the list.
-  #exclude_lines: ['^DBG']
+    # Exclude lines. A list of regular expressions to match. It drops the lines that are
+    # matching any regular expression from the list.
+    #exclude_lines: ['^DBG']
 
-  # Include lines. A list of regular expressions to match. It exports the lines that are
-  # matching any regular expression from the list.
-  #include_lines: ['^ERR', '^WARN']
+    # Include lines. A list of regular expressions to match. It exports the lines that are
+    # matching any regular expression from the list.
+    #include_lines: ['^ERR', '^WARN']
 
-  # Exclude files. A list of regular expressions to match. Filebeat drops the files that
-  # are matching any regular expression from the list. By default, no files are dropped.
-  #exclude_files: ['.gz$']
+    # Exclude files. A list of regular expressions to match. Filebeat drops the files that
+    # are matching any regular expression from the list. By default, no files are dropped.
+    #exclude_files: ['.gz$']
 
-  # Optional additional fields. These fields can be freely picked
-  # to add additional information to the crawled log files for filtering
-  #fields:
-  #  level: debug
-  #  review: 1
+    # Optional additional fields. These fields can be freely picked
+    # to add additional information to the crawled log files for filtering
+    #fields:
+    #  level: debug
+    #  review: 1
 
-  ### Multiline options
+    ### Multiline options
 
-  # Multiline can be used for log messages spanning multiple lines. This is common
-  # for Java Stack Traces or C-Line Continuation
+    # Multiline can be used for log messages spanning multiple lines. This is common
+    # for Java Stack Traces or C-Line Continuation
 
-  # The regexp Pattern that has to be matched. The example pattern matches all lines starting with [
-  multiline.pattern: ^\d
+    # The regexp Pattern that has to be matched. The example pattern matches all lines starting with [
+    multiline.pattern: ^\d
 
-  # Defines if the pattern set under pattern should be negated or not. Default is false.
-  multiline.negate: true
+    # Defines if the pattern set under pattern should be negated or not. Default is false.
+    multiline.negate: true
 
-  # Match can be set to "after" or "before". It is used to define if lines should be append to a pattern
-  # that was (not) matched before or after or as long as a pattern is not matched based on negate.
-  # Note: After is the equivalent to previous and before is the equivalent to to next in Logstash
-  multiline.match: after
+    # Match can be set to "after" or "before". It is used to define if lines should be append to a pattern
+    # that was (not) matched before or after or as long as a pattern is not matched based on negate.
+    # Note: After is the equivalent to previous and before is the equivalent to to next in Logstash
+    multiline.match: after
 
 
 #============================= Filebeat modules ===============================
@@ -141,16 +142,16 @@ setup.template.settings:
 # This requires a Kibana endpoint configuration.
 setup.kibana:
 
-  # Kibana Host
-  # Scheme and port can be left out and will be set to the default (http and 5601)
-  # In case you specify and additional path, the scheme is required: http://localhost:5601/path
-  # IPv6 addresses should always be defined as: https://[2001:db8::1]:5601
-  #host: "localhost:5601"
+# Kibana Host
+# Scheme and port can be left out and will be set to the default (http and 5601)
+# In case you specify and additional path, the scheme is required: http://localhost:5601/path
+# IPv6 addresses should always be defined as: https://[2001:db8::1]:5601
+#host: "localhost:5601"
 
-  # Kibana Space ID
-  # ID of the Kibana Space into which the dashboards should be loaded. By default,
-  # the Default Space will be used.
-  #space.id:
+# Kibana Space ID
+# ID of the Kibana Space into which the dashboards should be loaded. By default,
+# the Default Space will be used.
+#space.id:
 
 #============================= Elastic Cloud ==================================
 
@@ -171,16 +172,16 @@ setup.kibana:
 
 #-------------------------- Elasticsearch output ------------------------------
 #output.elasticsearch:
-  # Array of hosts to connect to.
-  #hosts: ["localhost:9200"]
+# Array of hosts to connect to.
+#hosts: ["localhost:9200"]
 
-  # Enabled ilm (beta) to use index lifecycle management instead daily indices.
-  #ilm.enabled: false
+# Enabled ilm (beta) to use index lifecycle management instead daily indices.
+#ilm.enabled: false
 
-  # Optional protocol and basic auth credentials.
-  #protocol: "https"
-  #username: "elastic"
-  #password: "changeme"
+# Optional protocol and basic auth credentials.
+#protocol: "https"
+#username: "elastic"
+#password: "changeme"
 
 #----------------------------- Logstash output --------------------------------
 output.logstash:

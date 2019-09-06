@@ -4,8 +4,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mod.message.dao.MesSysLogDao;
 import com.mod.message.entity.dto.MesSysLogDTO;
 import com.mod.message.entity.po.MesSysLogPO;
-import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -33,6 +33,7 @@ public class MesSysLogServiceImpl extends ServiceImpl<MesSysLogDao,MesSysLogPO> 
         sysLogPO.setLevel(level != null ? level.getCode() : 0);
         sysLogPO.setRequestTime(dto.getRequestTime());
         sysLogPO.setTraceId(dto.getTraceId());
+        sysLogPO.setModule(dto.getModule());
         mesSysLogDao.insert(sysLogPO);
     }
 }

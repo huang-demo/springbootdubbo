@@ -2,6 +2,7 @@ package com.mod.message.entity.dto;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Date;
  * @Date create in 2019/9/5 11:05
  */
 @Data
-public class MesSysLogDTO{
+public class MesSysLogDTO implements Serializable{
     private String level;
     private String className;
     private String message;

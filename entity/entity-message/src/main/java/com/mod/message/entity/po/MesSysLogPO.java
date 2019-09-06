@@ -38,7 +38,7 @@ public class MesSysLogPO extends BasePO{
     /**
      * 模块名
      */
-    private String application;
+    private String module;
 
     /**
      * 类型1 info 2 warn 3 err

@@ -22,7 +22,7 @@ public class GlobalExceptionHandler {
         return Result.error(e.getMessage());
     }
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(ValidateParamException.class)
     public Result handleValidateException(ValidateParamException e) {
         log.warn("参数校验:{}",e.getMessage());
         return Result.error(e.getMsg());

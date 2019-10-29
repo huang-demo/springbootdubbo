@@ -43,7 +43,7 @@
         <druid.version>1.1.12</druid.version>
         <shrio-spring.version>1.4.0</shrio-spring.version>
         <jedis.version>2.9.0</jedis.version>
-        <netty.version>4.1.36.Final</netty.version>
+        <netty.version>4.1.42.Final</netty.version>
         <validation.version>2.0.1.Final</validation.version>
         <mybatis-spring.version>2.1.0</mybatis-spring.version>
         <apollo.version>1.1.0</apollo.version>

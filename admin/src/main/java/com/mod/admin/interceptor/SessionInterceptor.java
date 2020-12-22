@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @Description: 描述当前类
- * @Author Mr.p Email:huangdemo@shein.com
+ * @Author Mr.p Email:
  * @Date create in 2019/7/31 14:17
  */
 @Component

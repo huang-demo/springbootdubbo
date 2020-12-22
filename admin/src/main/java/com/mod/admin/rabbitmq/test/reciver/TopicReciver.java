@@ -13,7 +13,7 @@ import java.io.IOException;
 
 /**
  * @Description: 描述当前类
- * @Author Mr.p Email:huangdemo@shein.com
+ * @Author Mr.p Email:
  * @Date create in 2019/8/14 14:04
  */
 @Component

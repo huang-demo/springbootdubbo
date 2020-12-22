@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @Description: 描述当前类
- * @Author Mr.p Email:huangdemo@shein.com
+ * @Author Mr.p Email:
  * @Date create in 2019/7/23 16:23
  */
 @Configuration

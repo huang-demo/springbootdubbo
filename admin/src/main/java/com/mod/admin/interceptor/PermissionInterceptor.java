@@ -17,7 +17,7 @@ import java.util.Set;
 
 /**
  * @Description: 描述当前类
- * @Author Mr.p Email:huangdemo@shein.com
+ * @Author Mr.p Email:
  * @Date create in 2019/7/29 10:17
  */
 @Slf4j

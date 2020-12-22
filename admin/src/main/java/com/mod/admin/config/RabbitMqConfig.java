@@ -28,7 +28,7 @@ import java.util.Map;
 
 /**
  * @Description: 描述当前类
- * @Author Mr.p Email:huangdemo@shein.com
+ * @Author Mr.p Email:
  * @Date create in 2019/8/8 9:12
  */
 @Slf4j
